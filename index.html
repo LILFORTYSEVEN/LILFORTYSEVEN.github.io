@@ -27,6 +27,7 @@
             line-height: 1.5;
         }
 
+        /* ===== КЛЮЧЕВЫЕ КАДРЫ ДЛЯ АНИМАЦИЙ ===== */
         @keyframes fadeSlideUp {
             0% { opacity: 0; transform: translateY(40px); }
             100% { opacity: 1; transform: translateY(0); }
@@ -53,6 +54,7 @@
             100% { opacity: 1; }
         }
 
+        /* ===== КНОПКА PDF ===== */
         .pdf-controls {
             width: 100%;
             max-width: 1000px;
@@ -85,6 +87,7 @@
             box-shadow: 0 0 30px rgba(124, 58, 237, 0.4);
         }
 
+        /* ===== КАРТОЧКА РЕЗЮМЕ ===== */
         .resume {
             max-width: 1000px;
             width: 100%;
@@ -101,6 +104,7 @@
             box-shadow: 0 20px 60px rgba(124, 58, 237, 0.15);
         }
 
+        /* ===== ШАПКА С ФОТО ===== */
         .header {
             display: flex;
             justify-content: space-between;
@@ -222,15 +226,40 @@
             padding-bottom: 8px;
         }
 
+        /* ===== ОПЫТ РАБОТЫ (НОВОЕ ОФОРМЛЕНИЕ) ===== */
         .exp-item {
-            margin-bottom: 28px;
+            position: relative;
+            background: #1f1f23;
+            padding: 18px 22px 18px 28px;
+            border-radius: 14px;
+            margin-bottom: 18px;
+            border: 1px solid #2a2a2e;
+            border-left: 4px solid #7c3aed;
             transition: all 0.3s ease;
-            padding: 10px;
-            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .exp-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, #7c3aed, #a78bfa, #7c3aed);
+            background-size: 100% 200%;
+            transition: background-position 0.4s ease;
         }
 
         .exp-item:hover {
-            background: #1f1f26;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(124, 58, 237, 0.12), 0 5px 15px rgba(0, 0, 0, 0.4);
+            background: #22222a;
+            border-color: #3a3a3e;
+        }
+
+        .exp-item:hover::before {
+            background-position: 0 100%;
         }
 
         .exp-item:last-child {
@@ -242,18 +271,23 @@
             justify-content: space-between;
             align-items: baseline;
             flex-wrap: wrap;
-            margin-bottom: 4px;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #2a2a2e;
+            gap: 8px;
         }
 
         .exp-header h3 {
             font-size: 18px;
             font-weight: 600;
             color: #ffffff;
+            letter-spacing: -0.2px;
         }
 
         .exp-header .company {
             font-weight: 500;
             color: #b0b0b8;
+            font-size: 15px;
         }
 
         .exp-header .company a {
@@ -263,80 +297,96 @@
         }
 
         .exp-header .company a:hover {
-            color: #7c3aed;
+            color: #a78bfa;
         }
 
         .exp-header .date {
-            font-size: 14px;
-            color: #6b6b75;
-            background: #242428;
-            padding: 2px 12px;
+            font-size: 13px;
+            color: #a78bfa;
+            background: #2a2a30;
+            padding: 3px 12px;
             border-radius: 30px;
+            font-weight: 500;
+            letter-spacing: 0.2px;
         }
 
         .exp-stack {
-            margin-top: 6px;
+            margin-top: 0;
+            margin-bottom: 12px;
             display: flex;
             flex-wrap: wrap;
             gap: 6px;
         }
 
         .exp-stack .stack-tag {
-            display: inline-block;
-            background: #1f1f26;
-            padding: 2px 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #242428;
+            padding: 3px 12px;
             border-radius: 30px;
             font-size: 12px;
             font-weight: 500;
-            color: #a78bfa;
-            border: 1px solid #2a2a2e;
+            color: #c8c8cf;
+            border: 1px solid #2f2f36;
             letter-spacing: 0.2px;
+            transition: all 0.3s ease;
+        }
+
+        .exp-stack .stack-tag:hover {
+            background: #2f2f36;
+            color: #e4e4e7;
+            border-color: #7c3aed;
+            transform: translateY(-1px);
         }
 
         .exp-stack .stack-tag i {
-            margin-right: 4px;
             font-size: 11px;
             color: #7c3aed;
+            transition: color 0.3s ease;
         }
 
-        /* ===== РАСКРЫВАЮЩИЙСЯ СПИСОК ===== */
-.exp-toggle {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    margin-top: 12px;
-    width: 100%;
-    background: #1f1f26;
-    color: #a78bfa;
-    border: 1px solid #2a2a2e;
-    padding: 10px 16px;
-    border-radius: 30px;
-    font-size: 13px;
-    font-weight: 500;
-    font-family: 'Inter', sans-serif;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    letter-spacing: 0.3px;
-}
+        .exp-stack .stack-tag:hover i {
+            color: #a78bfa;
+        }
 
-.exp-toggle:hover {
-    background: #2a2a30;
-    color: #c4b5fd;
-    border-color: #7c3aed;
-    box-shadow: 0 5px 15px rgba(124, 58, 237, 0.15);
-}
+        /* ===== КНОПКА РАСКРЫТИЯ ===== */
+        .exp-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            background: #242428;
+            color: #a78bfa;
+            border: 1px solid #2f2f36;
+            padding: 10px 16px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 500;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 0.3px;
+        }
 
-.exp-toggle .toggle-arrow {
-    display: inline-block;
-    transition: transform 0.3s ease;
-    font-size: 14px;
-    line-height: 1;
-}
+        .exp-toggle:hover {
+            background: #2f2f36;
+            color: #c4b5fd;
+            border-color: #7c3aed;
+            box-shadow: 0 5px 15px rgba(124, 58, 237, 0.15);
+        }
 
-.exp-toggle.open .toggle-arrow {
-    transform: rotate(90deg);
-}
+        .exp-toggle .toggle-arrow {
+            display: inline-block;
+            transition: transform 0.3s ease;
+            font-size: 14px;
+            line-height: 1;
+        }
+
+        .exp-toggle.open .toggle-arrow {
+            transform: rotate(90deg);
+        }
 
         .exp-details {
             max-height: 0;
@@ -347,9 +397,11 @@
         }
 
         .exp-details.open {
-            max-height: 1000px;
+            max-height: 1200px;
             opacity: 1;
-            margin-top: 8px;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px dashed #2f2f36;
         }
 
         .exp-desc {
@@ -362,7 +414,8 @@
         .exp-desc li {
             position: relative;
             padding-left: 20px;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
+            line-height: 1.55;
         }
 
         .exp-desc li::before {
@@ -373,54 +426,79 @@
             font-weight: 700;
         }
 
+        /* ===== ПРОЕКТЫ ===== */
         .project-item {
+            position: relative;
             background: #1f1f23;
-            padding: 16px 20px;
+            padding: 18px 22px 18px 28px;
             border-radius: 14px;
-            margin-bottom: 14px;
-            border-left: 3px solid #7c3aed;
+            margin-bottom: 16px;
+            border: 1px solid #2a2a2e;
+            border-left: 4px solid #7c3aed;
             transition: all 0.3s ease;
             cursor: default;
+            overflow: hidden;
+        }
+
+        .project-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, #7c3aed, #a78bfa, #7c3aed);
+            background-size: 100% 200%;
+            transition: background-position 0.4s ease;
         }
 
         .project-item:hover {
             transform: translateY(-5px);
-            border-left: 3px solid #a78bfa;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 15px 40px rgba(124, 58, 237, 0.15), 0 5px 15px rgba(0, 0, 0, 0.4);
             background: #22222a;
+            border-color: #3a3a3e;
+        }
+
+        .project-item:hover::before {
+            background-position: 0 100%;
         }
 
         .project-item h4 {
             color: #fff;
             font-weight: 600;
             font-size: 17px;
-            margin-bottom: 4px;
+            margin-bottom: 8px;
             display: flex;
             align-items: center;
             gap: 10px;
             flex-wrap: wrap;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #2a2a2e;
         }
 
         .project-item .project-role {
-            font-size: 13px;
-            font-weight: 400;
-            color: #7c3aed;
+            font-size: 12px;
+            font-weight: 500;
+            color: #a78bfa;
             background: #2a2a30;
-            padding: 0 10px;
+            padding: 3px 12px;
             border-radius: 20px;
-            line-height: 22px;
+            line-height: 20px;
+            letter-spacing: 0.2px;
         }
 
         .project-item .project-desc {
             color: #c8c8cf;
             font-size: 14px;
-            line-height: 1.6;
-            margin-top: 4px;
+            line-height: 1.65;
+            margin-top: 6px;
+            padding-left: 4px;
         }
 
         .project-item .project-desc strong {
-            color: #ffffff;
+            color: #a78bfa;
             font-weight: 600;
+        
         }
 
         .project-item .project-desc i {
@@ -429,43 +507,58 @@
         }
 
         .project-item .project-results {
-            margin-top: 8px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px 24px;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px dashed #2f2f36;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px 20px;
             font-size: 13px;
-            color: #8a8a94;
+            color: #b0b0b8;
         }
 
         .project-item .project-results span {
-            display: inline-flex;
+            display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
+            padding: 4px 0;
+            transition: color 0.2s ease;
+        }
+
+        .project-item .project-results span:hover {
+            color: #e4e4e7;
         }
 
         .project-item .project-results i {
             color: #7c3aed;
             font-size: 14px;
+            flex-shrink: 0;
+            width: 16px;
+            text-align: center;
         }
 
         .project-item .tech-tag {
             display: inline-block;
             background: #2a2a30;
-            padding: 2px 12px;
+            padding: 3px 12px;
             border-radius: 30px;
             font-size: 12px;
             color: #c8c8cf;
             margin-right: 6px;
-            margin-top: 8px;
+            margin-top: 10px;
+            border: 1px solid #2f2f36;
             transition: all 0.3s ease;
         }
 
         .project-item .tech-tag:hover {
-            transform: scale(1.1);
+            transform: scale(1.08);
             background: #7c3aed;
             color: #fff;
+            border-color: #7c3aed;
+            box-shadow: 0 4px 12px rgba(124, 58, 237, 0.35);
         }
 
+        /* ===== РЕКОМЕНДАЦИИ ===== */
         .recommendations-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -516,6 +609,7 @@
             margin-right: 6px;
         }
 
+        /* ===== МОДАЛЬНОЕ ОКНО ===== */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -598,12 +692,13 @@
             margin-right: 8px;
         }
 
+        /* ===== ВИДЕО ===== */
         .video-wrapper {
-            background: #1f1f23;
+            background: #1a1a1e;
             border-radius: 14px;
             padding: 12px;
-            margin-top: 10px;
-            border: 1px solid #2a2a2e;
+            margin-top: 14px;
+            border: 1px solid #2f2f36;
         }
 
         .video-wrapper .video-label {
@@ -641,6 +736,7 @@
             margin-right: 10px;
         }
 
+        /* ===== ПРАВАЯ КОЛОНКА ===== */
         .side-col {
             display: flex;
             flex-direction: column;
@@ -764,6 +860,7 @@
             color: #a78bfa;
         }
 
+        /* ===== СТАТИСТИКА ===== */
         .stats {
             display: flex;
             justify-content: space-around;
@@ -811,6 +908,7 @@
             transform: rotate(360deg) scale(1.2);
         }
 
+        /* ===== АНИМАЦИИ ===== */
         .grid, .header, .section-title, .exp-item, .project-item, .skill-item, .lang-item, .edu-item, .extra-item, .video-wrapper, .recommendations-grid {
             opacity: 0;
             animation: fadeSlideUp 0.6s ease-out forwards;
@@ -831,6 +929,7 @@
         .recommendations-grid .recommendation-item:nth-child(2) { animation-delay: 0.8s; }
         .recommendations-grid .recommendation-item:nth-child(3) { animation-delay: 0.9s; }
 
+        /* ===== ПЕЧАТЬ ===== */
         @media print {
             body { background: #fff; padding: 0; }
             .resume { box-shadow: none; border: 1px solid #ddd; border-radius: 0; padding: 30px; animation: none; }
@@ -845,15 +944,20 @@
             .tech-tag { background: #eee !important; color: #000 !important; }
             .section-title { color: #7c3aed !important; }
             .stats { display: none; }
-            .exp-item:hover { transform: none; background: none; }
-            .project-item:hover { transform: none; box-shadow: none; background: none; }
+            .exp-item:hover { transform: none; background: #f9f9f9; }
+            .project-item:hover { transform: none; box-shadow: none; background: #f9f9f9; }
             .skill-item:hover { transform: none; background: #242428; color: #d4d4d9; }
             .contact-item:hover { transform: none; }
             .project-item .project-results { display: none; }
             .exp-toggle { display: none; }
-            .exp-details { max-height: none !important; opacity: 1 !important; margin-top: 8px !important; }
+            .exp-details { max-height: none !important; opacity: 1 !important; margin-top: 12px !important; padding-top: 12px !important; border-top: 1px dashed #ccc !important; }
+            .exp-item { background: #fff !important; border: 1px solid #ddd !important; border-left: 4px solid #7c3aed !important; }
+            .exp-header h3, .exp-desc { color: #000 !important; }
+            .exp-header .date, .exp-header .company { color: #666 !important; }
+            .exp-stack .stack-tag { background: #eee !important; color: #000 !important; }
         }
 
+        /* ===== АДАПТИВНОСТЬ ===== */
         @media (max-width: 780px) {
             .resume { padding: 30px 20px; }
             .grid { grid-template-columns: 1fr; gap: 30px; }
@@ -867,6 +971,8 @@
             .photo-wrapper { width: 130px; height: 130px; }
             .project-item h4 { font-size: 15px; flex-wrap: wrap; }
             .recommendations-grid { grid-template-columns: repeat(2, 1fr); }
+            .exp-header { flex-direction: column; align-items: flex-start; }
+            .project-item .project-results { grid-template-columns: 1fr; }
         }
 
         @media (max-width: 480px) {
@@ -875,9 +981,12 @@
             .name-title .full-name { font-size: 26px; }
             .photo-wrapper { width: 100px; height: 100px; }
             .header-left { gap: 20px; }
-            .project-item { padding: 12px 14px; }
+            .project-item { padding: 14px 16px 14px 22px; }
+            .exp-item { padding: 14px 16px 14px 22px; }
             .project-item .project-results { flex-direction: column; gap: 4px; }
             .recommendations-grid { grid-template-columns: 1fr; }
+            .exp-header h3 { font-size: 16px; }
+            .exp-header .date { font-size: 12px; padding: 2px 10px; }
         }
     </style>
 </head>
@@ -1073,21 +1182,7 @@
                             <span class="tech-tag">REST API</span>
                             <span class="tech-tag">Git</span>
                         </div>
-                        <div class="video-wrapper" style="margin-top: 12px;">
-                            <div class="video-label">
-                                <i class="fas fa-video"></i> Демонстрация работы бота
-                            </div>
-                            <div style="background: #0e0e10; border-radius: 10px; padding: 16px; text-align: center;">
-                                <a href="https://disk.yandex.ru/i/r_JsQJmc15ErlA" 
-                                   target="_blank" 
-                                   class="video-download-btn">
-                                   <i class="fas fa-external-link-alt"></i> Смотреть на Яндекс Диске
-                                </a>
-                                <p style="color: #8a8a94; font-size: 13px; margin-top: 8px;">
-                                    Видео откроется в новой вкладке · 1:14
-                                </p>
-                            </div>
-                        </div>
+                  
                     </div>
                 </section>
 
