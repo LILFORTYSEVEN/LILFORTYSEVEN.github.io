@@ -27,7 +27,6 @@
             line-height: 1.5;
         }
 
-        /* ===== КЛЮЧЕВЫЕ КАДРЫ ДЛЯ АНИМАЦИЙ ===== */
         @keyframes fadeSlideUp {
             0% { opacity: 0; transform: translateY(40px); }
             100% { opacity: 1; transform: translateY(0); }
@@ -54,7 +53,6 @@
             100% { opacity: 1; }
         }
 
-        /* ===== КНОПКА PDF ===== */
         .pdf-controls {
             width: 100%;
             max-width: 1000px;
@@ -87,7 +85,6 @@
             box-shadow: 0 0 30px rgba(124, 58, 237, 0.4);
         }
 
-        /* ===== КАРТОЧКА РЕЗЮМЕ ===== */
         .resume {
             max-width: 1000px;
             width: 100%;
@@ -104,7 +101,6 @@
             box-shadow: 0 20px 60px rgba(124, 58, 237, 0.15);
         }
 
-        /* ===== ШАПКА С ФОТО ===== */
         .header {
             display: flex;
             justify-content: space-between;
@@ -235,7 +231,6 @@
 
         .exp-item:hover {
             background: #1f1f26;
-            transform: translateX(5px);
         }
 
         .exp-item:last-child {
@@ -304,8 +299,60 @@
             color: #7c3aed;
         }
 
-        .exp-desc {
+        /* ===== РАСКРЫВАЮЩИЙСЯ СПИСОК ===== */
+.exp-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 12px;
+    width: 100%;
+    background: #1f1f26;
+    color: #a78bfa;
+    border: 1px solid #2a2a2e;
+    padding: 10px 16px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 500;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    letter-spacing: 0.3px;
+}
+
+.exp-toggle:hover {
+    background: #2a2a30;
+    color: #c4b5fd;
+    border-color: #7c3aed;
+    box-shadow: 0 5px 15px rgba(124, 58, 237, 0.15);
+}
+
+.exp-toggle .toggle-arrow {
+    display: inline-block;
+    transition: transform 0.3s ease;
+    font-size: 14px;
+    line-height: 1;
+}
+
+.exp-toggle.open .toggle-arrow {
+    transform: rotate(90deg);
+}
+
+        .exp-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, opacity 0.3s ease, margin-top 0.3s ease;
+            opacity: 0;
+            margin-top: 0;
+        }
+
+        .exp-details.open {
+            max-height: 1000px;
+            opacity: 1;
             margin-top: 8px;
+        }
+
+        .exp-desc {
             color: #c8c8cf;
             font-size: 15px;
             list-style: none;
@@ -419,7 +466,6 @@
             color: #fff;
         }
 
-        /* ===== РАЗДЕЛ РЕКОМЕНДАЦИИ ===== */
         .recommendations-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -470,7 +516,6 @@
             margin-right: 6px;
         }
 
-        /* ===== МОДАЛЬНОЕ ОКНО ===== */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -553,7 +598,6 @@
             margin-right: 8px;
         }
 
-        /* ===== ВИДЕО ===== */
         .video-wrapper {
             background: #1f1f23;
             border-radius: 14px;
@@ -767,7 +811,6 @@
             transform: rotate(360deg) scale(1.2);
         }
 
-        /* ===== АНИМАЦИИ ===== */
         .grid, .header, .section-title, .exp-item, .project-item, .skill-item, .lang-item, .edu-item, .extra-item, .video-wrapper, .recommendations-grid {
             opacity: 0;
             animation: fadeSlideUp 0.6s ease-out forwards;
@@ -788,7 +831,6 @@
         .recommendations-grid .recommendation-item:nth-child(2) { animation-delay: 0.8s; }
         .recommendations-grid .recommendation-item:nth-child(3) { animation-delay: 0.9s; }
 
-        /* ===== ПЕЧАТЬ ===== */
         @media print {
             body { background: #fff; padding: 0; }
             .resume { box-shadow: none; border: 1px solid #ddd; border-radius: 0; padding: 30px; animation: none; }
@@ -808,9 +850,10 @@
             .skill-item:hover { transform: none; background: #242428; color: #d4d4d9; }
             .contact-item:hover { transform: none; }
             .project-item .project-results { display: none; }
+            .exp-toggle { display: none; }
+            .exp-details { max-height: none !important; opacity: 1 !important; margin-top: 8px !important; }
         }
 
-        /* ===== АДАПТИВНОСТЬ ===== */
         @media (max-width: 780px) {
             .resume { padding: 30px 20px; }
             .grid { grid-template-columns: 1fr; gap: 30px; }
@@ -882,6 +925,7 @@
                 <section>
                     <h2 class="section-title"><i class="fas fa-briefcase" style="margin-right: 10px;"></i> Опыт работы</h2>
 
+                    <!-- ===== 1. Администратор баз данных ===== -->
                     <div class="exp-item">
                         <div class="exp-header">
                             <h3>Администратор баз данных</h3>
@@ -893,15 +937,21 @@
                             <span class="stack-tag"><i class="fas fa-database"></i> SQL (выгрузки)</span>
                             <span class="stack-tag"><i class="fas fa-windows"></i> Администрирование Windows</span>
                         </div>
-                        <ul class="exp-desc">
-                            <li>Обработал и ввел массивы первичных данных в учетную систему и базы данных на платформе «1С:Садовод», проверил их целостность и непротиворечивость.</li>
-                            <li>Администрировал учетные записи пользователей и администраторов: создал, настроил права доступа и при необходимости заблокировал учётные записи.</li>
-                            <li>Спроектировал и выполнил выгрузки данных из реляционных баз, хранилищ и витрин под задачи смежных подразделений, обеспечив выгрузку в требуемых форматах.</li>
-                            <li>Обучил и проконсультировал конечных пользователей по работе в программах 1С, объяснил алгоритмы выполнения типовых операций.</li>
-                            <li>Предоставил техническую поддержку пользователям (L1/L2), диагностировал и устранил неполадки в работе офисного оборудования и прикладного ПО на местах.</li>
-                        </ul>
+                        <button class="exp-toggle" onclick="toggleExp(this)">
+                            <span class="toggle-arrow">▸</span> Показать подробности
+                        </button>
+                        <div class="exp-details">
+                            <ul class="exp-desc">
+                                <li>Обработал и ввел массивы первичных данных в учетную систему и базы данных на платформе «1С:Садовод», проверил их целостность и непротиворечивость.</li>
+                                <li>Администрировал учетные записи пользователей и администраторов: создал, настроил права доступа и при необходимости заблокировал учётные записи.</li>
+                                <li>Спроектировал и выполнил выгрузки данных из реляционных баз, хранилищ и витрин под задачи смежных подразделений, обеспечив выгрузку в требуемых форматах.</li>
+                                <li>Обучил и проконсультировал конечных пользователей по работе в программах 1С, объяснил алгоритмы выполнения типовых операций.</li>
+                                <li>Предоставил техническую поддержку пользователям (L1/L2), диагностировал и устранил неполадки в работе офисного оборудования и прикладного ПО на местах.</li>
+                            </ul>
+                        </div>
                     </div>
 
+                    <!-- ===== 2. Android-разработчик ===== -->
                     <div class="exp-item">
                         <div class="exp-header">
                             <h3>Android-разработчик (Kotlin)</h3>
@@ -913,15 +963,21 @@
                             <span class="stack-tag"><i class="fas fa-mobile-alt"></i> Android SDK</span>
                             <span class="stack-tag"><i class="fas fa-database"></i> Room DB</span>
                         </div>
-                        <ul class="exp-desc">
-                            <li>Разработал нативное Android-приложение на Kotlin для операторов БПЛА, закладывая архитектуру, устойчивую к работе в условиях ограниченных ресурсов устройства (память/процессор).</li>
-                            <li>Спроектировал и сверстал интерфейс с динамическим обновлением полётных данных без задержек.</li>
-                            <li>Реализовал слой локального хранения, настроил базу данных Room, в которую приложение сохраняло статистику полётов (минимальное, среднее, максимальное время) и результаты заданий.</li>
-                            <li>Интегрировал функционал экспорта данных, разработал генерацию отчетов по полётной статистике в форматах PDF и Excel на стороне устройства.</li>
-                            <li>Взаимодействовал с заказчиком на всех этапах, уточнил функциональные требования, проводил демонстрации промежуточных сборок и собирал обратную связь для корректировки UI/UX.</li>
-                        </ul>
+                        <button class="exp-toggle" onclick="toggleExp(this)">
+                            <span class="toggle-arrow">▸</span> Показать подробности
+                        </button>
+                        <div class="exp-details">
+                            <ul class="exp-desc">
+                                <li>Разработал нативное Android-приложение на Kotlin для операторов БПЛА, закладывая архитектуру, устойчивую к работе в условиях ограниченных ресурсов устройства (память/процессор).</li>
+                                <li>Спроектировал и сверстал интерфейс с динамическим обновлением полётных данных без задержек.</li>
+                                <li>Реализовал слой локального хранения, настроил базу данных Room, в которую приложение сохраняло статистику полётов (минимальное, среднее, максимальное время) и результаты заданий.</li>
+                                <li>Интегрировал функционал экспорта данных, разработал генерацию отчетов по полётной статистике в форматах PDF и Excel на стороне устройства.</li>
+                                <li>Взаимодействовал с заказчиком на всех этапах, уточнил функциональные требования, проводил демонстрации промежуточных сборок и собирал обратную связь для корректировки UI/UX.</li>
+                            </ul>
+                        </div>
                     </div>
 
+                    <!-- ===== 3. Python-разработчик ===== -->
                     <div class="exp-item">
                         <div class="exp-header">
                             <h3>Python-разработчик (Telegram-бот)</h3>
@@ -935,26 +991,31 @@
                             <span class="stack-tag"><i class="fas fa-credit-card"></i> API платежных шлюзов</span>
                             <span class="stack-tag"><i class="fab fa-git-alt"></i> Git</span>
                         </div>
-                        <ul class="exp-desc">
-                            <li>Разработал Telegram-бота на Python (фреймворк Aiogram): спроектировал архитектуру диалогов, реализовал FSM-машину состояний для многошаговых сценариев взаимодействия с пользователем.</li>
-                            <li>Спроектировал и развернул структуру базы данных, написал SQL-запросы и миграции для хранения и обработки пользовательских данных бота.</li>
-                            <li>Провел полный цикл тестирования кода, выявил и исправил баги, связанные с асинхронной обработкой запросов и гонкой состояний, добился стабильной работы под нагрузкой.</li>
-                            <li>Привел кодовую базу и документацию в соответствие с отраслевыми стандартами и требованиями заказчика, внедрил системы ведения changelog'а для прозрачности процесса разработки.</li>
-                            <li>Спроектировал и реализовал интеграцию с внешними сервисами, написал модуль для подключения платежной системы, а также синхронизировал каталог бота с API основного сайта компании, чтобы цены и остатки отображались в актуальном виде.</li>
-                        </ul>
-                        <div class="video-wrapper">
-                            <div class="video-label">
-                                <i class="fas fa-video"></i> Демонстрация работы бота
-                            </div>
-                            <div style="background: #0e0e10; border-radius: 10px; padding: 20px; text-align: center;">
-                                <a href="https://disk.yandex.ru/i/r_JsQJmc15ErlA" 
-                                   target="_blank" 
-                                   class="video-download-btn">
-                                   <i class="fas fa-external-link-alt"></i> Смотреть на Яндекс Диске
-                                </a>
-                                <p style="color: #8a8a94; font-size: 13px; margin-top: 10px;">
-                                    Видео откроется в новой вкладке · 1:14
-                                </p>
+                        <button class="exp-toggle" onclick="toggleExp(this)">
+                            <span class="toggle-arrow">▸</span> Показать подробности
+                        </button>
+                        <div class="exp-details">
+                            <ul class="exp-desc">
+                                <li>Разработал Telegram-бота на Python (фреймворк Aiogram): спроектировал архитектуру диалогов, реализовал FSM-машину состояний для многошаговых сценариев взаимодействия с пользователем.</li>
+                                <li>Спроектировал и развернул структуру базы данных, написал SQL-запросы и миграции для хранения и обработки пользовательских данных бота.</li>
+                                <li>Провел полный цикл тестирования кода, выявил и исправил баги, связанные с асинхронной обработкой запросов и гонкой состояний, добился стабильной работы под нагрузкой.</li>
+                                <li>Привел кодовую базу и документацию в соответствие с отраслевыми стандартами и требованиями заказчика, внедрил системы ведения changelog'а для прозрачности процесса разработки.</li>
+                                <li>Спроектировал и реализовал интеграцию с внешними сервисами, написал модуль для подключения платежной системы, а также синхронизировал каталог бота с API основного сайта компании, чтобы цены и остатки отображались в актуальном виде.</li>
+                            </ul>
+                            <div class="video-wrapper">
+                                <div class="video-label">
+                                    <i class="fas fa-video"></i> Демонстрация работы бота
+                                </div>
+                                <div style="background: #0e0e10; border-radius: 10px; padding: 20px; text-align: center;">
+                                    <a href="https://disk.yandex.ru/i/r_JsQJmc15ErlA" 
+                                       target="_blank" 
+                                       class="video-download-btn">
+                                       <i class="fas fa-external-link-alt"></i> Смотреть на Яндекс Диске
+                                    </a>
+                                    <p style="color: #8a8a94; font-size: 13px; margin-top: 10px;">
+                                        Видео откроется в новой вкладке · 1:14
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1030,7 +1091,7 @@
                     </div>
                 </section>
 
-                <!-- ===== РЕКОМЕНДАЦИИ (С МОДАЛЬНЫМ ОКНОМ) ===== -->
+                <!-- ===== РЕКОМЕНДАЦИИ ===== -->
                 <section>
                     <h2 class="section-title"><i class="fas fa-star" style="margin-right: 10px;"></i> Рекомендации</h2>
                     <div class="recommendations-grid">
@@ -1151,6 +1212,22 @@
     </div>
 
     <script>
+        // ===== РАСКРЫВАЮЩИЙСЯ СПИСОК =====
+        function toggleExp(button) {
+            const details = button.nextElementSibling;
+            const isOpen = details.classList.contains('open');
+            
+            if (isOpen) {
+                details.classList.remove('open');
+                button.classList.remove('open');
+                button.innerHTML = '<span class="toggle-arrow">▸</span> Показать подробности';
+            } else {
+                details.classList.add('open');
+                button.classList.add('open');
+                button.innerHTML = '<span class="toggle-arrow">▾</span> Скрыть подробности';
+            }
+        }
+
         // ===== ОТКРЫТИЕ МОДАЛЬНОГО ОКНА =====
         function openModal(imageSrc, labelText) {
             const overlay = document.getElementById('modalOverlay');
