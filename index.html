@@ -25,30 +25,27 @@
             min-height: 100vh;
             padding: 30px 15px;
             line-height: 1.5;
+            overflow-x: hidden;
         }
 
-        /* ===== КЛЮЧЕВЫЕ КАДРЫ ДЛЯ АНИМАЦИЙ ===== */
+        /* ===== АНИМАЦИИ ===== */
         @keyframes fadeSlideUp {
             0% { opacity: 0; transform: translateY(40px); }
             100% { opacity: 1; transform: translateY(0); }
         }
-
         @keyframes pulse {
             0% { transform: scale(1); }
             50% { transform: scale(1.05); }
             100% { transform: scale(1); }
         }
-
         @keyframes photoAppear {
             0% { opacity: 0; transform: scale(0.8) rotate(-5deg); }
             100% { opacity: 1; transform: scale(1) rotate(0); }
         }
-
         @keyframes modalFadeIn {
             0% { opacity: 0; transform: scale(0.9); }
             100% { opacity: 1; transform: scale(1); }
         }
-
         @keyframes modalBgFade {
             0% { opacity: 0; }
             100% { opacity: 1; }
@@ -97,11 +94,6 @@
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
             border: 1px solid #2a2a2e;
             animation: fadeSlideUp 0.8s ease-out;
-            transition: box-shadow 0.3s ease;
-        }
-
-        .resume:hover {
-            box-shadow: 0 20px 60px rgba(124, 58, 237, 0.15);
         }
 
         /* ===== ШАПКА С ФОТО ===== */
@@ -203,9 +195,10 @@
             color: #a78bfa;
         }
 
+        /* ===== ГЛАВНАЯ СЕТКА (ИСПРАВЛЕНО) ===== */
         .grid {
             display: grid;
-            grid-template-columns: 2.2fr 1fr;
+            grid-template-columns: minmax(0, 2.2fr) minmax(0, 1fr);
             gap: 40px;
         }
 
@@ -213,6 +206,16 @@
             display: flex;
             flex-direction: column;
             gap: 32px;
+            min-width: 0;
+            max-width: 100%;
+        }
+
+        .side-col {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+            min-width: 0;
+            max-width: 100%;
         }
 
         .section-title {
@@ -226,7 +229,7 @@
             padding-bottom: 8px;
         }
 
-        /* ===== ОПЫТ РАБОТЫ (НОВОЕ ОФОРМЛЕНИЕ) ===== */
+        /* ===== ОПЫТ РАБОТЫ ===== */
         .exp-item {
             position: relative;
             background: #1f1f23;
@@ -236,15 +239,13 @@
             border: 1px solid #2a2a2e;
             border-left: 4px solid #7c3aed;
             transition: all 0.3s ease;
-            overflow: hidden;
+            min-width: 0;
         }
 
         .exp-item::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            bottom: 0;
+            top: 0; left: 0; bottom: 0;
             width: 4px;
             background: linear-gradient(180deg, #7c3aed, #a78bfa, #7c3aed);
             background-size: 100% 200%;
@@ -258,13 +259,8 @@
             border-color: #3a3a3e;
         }
 
-        .exp-item:hover::before {
-            background-position: 0 100%;
-        }
-
-        .exp-item:last-child {
-            margin-bottom: 0;
-        }
+        .exp-item:hover::before { background-position: 0 100%; }
+        .exp-item:last-child { margin-bottom: 0; }
 
         .exp-header {
             display: flex;
@@ -281,7 +277,6 @@
             font-size: 18px;
             font-weight: 600;
             color: #ffffff;
-            letter-spacing: -0.2px;
         }
 
         .exp-header .company {
@@ -296,9 +291,7 @@
             transition: color 0.2s;
         }
 
-        .exp-header .company a:hover {
-            color: #a78bfa;
-        }
+        .exp-header .company a:hover { color: #a78bfa; }
 
         .exp-header .date {
             font-size: 13px;
@@ -307,11 +300,9 @@
             padding: 3px 12px;
             border-radius: 30px;
             font-weight: 500;
-            letter-spacing: 0.2px;
         }
 
         .exp-stack {
-            margin-top: 0;
             margin-bottom: 12px;
             display: flex;
             flex-wrap: wrap;
@@ -329,7 +320,6 @@
             font-weight: 500;
             color: #c8c8cf;
             border: 1px solid #2f2f36;
-            letter-spacing: 0.2px;
             transition: all 0.3s ease;
         }
 
@@ -343,14 +333,8 @@
         .exp-stack .stack-tag i {
             font-size: 11px;
             color: #7c3aed;
-            transition: color 0.3s ease;
         }
 
-        .exp-stack .stack-tag:hover i {
-            color: #a78bfa;
-        }
-
-        /* ===== КНОПКА РАСКРЫТИЯ ===== */
         .exp-toggle {
             display: flex;
             align-items: center;
@@ -381,12 +365,9 @@
             display: inline-block;
             transition: transform 0.3s ease;
             font-size: 14px;
-            line-height: 1;
         }
 
-        .exp-toggle.open .toggle-arrow {
-            transform: rotate(90deg);
-        }
+        .exp-toggle.open .toggle-arrow { transform: rotate(90deg); }
 
         .exp-details {
             max-height: 0;
@@ -408,7 +389,6 @@
             color: #c8c8cf;
             font-size: 15px;
             list-style: none;
-            padding-left: 0;
         }
 
         .exp-desc li {
@@ -436,16 +416,15 @@
             border: 1px solid #2a2a2e;
             border-left: 4px solid #7c3aed;
             transition: all 0.3s ease;
-            cursor: default;
+            min-width: 0;
+            max-width: 100%;
             overflow: hidden;
         }
 
         .project-item::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            bottom: 0;
+            top: 0; left: 0; bottom: 0;
             width: 4px;
             background: linear-gradient(180deg, #7c3aed, #a78bfa, #7c3aed);
             background-size: 100% 200%;
@@ -459,9 +438,7 @@
             border-color: #3a3a3e;
         }
 
-        .project-item:hover::before {
-            background-position: 0 100%;
-        }
+        .project-item:hover::before { background-position: 0 100%; }
 
         .project-item h4 {
             color: #fff;
@@ -484,7 +461,6 @@
             padding: 3px 12px;
             border-radius: 20px;
             line-height: 20px;
-            letter-spacing: 0.2px;
         }
 
         .project-item .project-desc {
@@ -498,12 +474,6 @@
         .project-item .project-desc strong {
             color: #a78bfa;
             font-weight: 600;
-        
-        }
-
-        .project-item .project-desc i {
-            color: #7c3aed;
-            margin-right: 4px;
         }
 
         .project-item .project-results {
@@ -511,7 +481,7 @@
             padding-top: 12px;
             border-top: 1px dashed #2f2f36;
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 8px 20px;
             font-size: 13px;
             color: #b0b0b8;
@@ -523,11 +493,10 @@
             gap: 8px;
             padding: 4px 0;
             transition: color 0.2s ease;
+            min-width: 0;
         }
 
-        .project-item .project-results span:hover {
-            color: #e4e4e7;
-        }
+        .project-item .project-results span:hover { color: #e4e4e7; }
 
         .project-item .project-results i {
             color: #7c3aed;
@@ -555,13 +524,99 @@
             background: #7c3aed;
             color: #fff;
             border-color: #7c3aed;
-            box-shadow: 0 4px 12px rgba(124, 58, 237, 0.35);
+        }
+
+        /* ===== ГАЛЕРЕЯ СКРИНШОТОВ (ИСПРАВЛЕНО) ===== */
+        .project-gallery {
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            overflow-y: hidden;
+            padding: 12px 4px 16px 4px;
+            margin-top: 14px;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: thin;
+            scrollbar-color: #7c3aed #1f1f23;
+            border-top: 1px dashed #2f2f36;
+            width: 100%;
+            max-width: 100%;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .project-gallery::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .project-gallery::-webkit-scrollbar-track {
+            background: #1f1f23;
+            border-radius: 10px;
+        }
+
+        .project-gallery::-webkit-scrollbar-thumb {
+            background: linear-gradient(90deg, #7c3aed, #a78bfa);
+            border-radius: 10px;
+        }
+
+        .project-gallery .gallery-item {
+            flex: 0 0 140px;
+            width: 140px;
+            height: 250px;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 2px solid #2a2a2e;
+            transition: all 0.3s ease;
+            scroll-snap-align: start;
+            background: #0e0e10;
+            position: relative;
+        }
+
+        .project-gallery .gallery-item:hover {
+            transform: translateY(-5px) scale(1.03);
+            border-color: #7c3aed;
+            box-shadow: 0 15px 40px rgba(124, 58, 237, 0.25);
+        }
+
+        .project-gallery .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .project-gallery .gallery-item .gallery-index {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: rgba(0, 0, 0, 0.7);
+            color: #a78bfa;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 20px;
+            border: 1px solid #7c3aed;
+            backdrop-filter: blur(4px);
+        }
+
+        .project-gallery-hint {
+            font-size: 12px;
+            color: #6b6b75;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 4px;
+            padding-left: 4px;
+        }
+
+        .project-gallery-hint i {
+            color: #7c3aed;
+            animation: pulse 2s infinite;
         }
 
         /* ===== РЕКОМЕНДАЦИИ ===== */
         .recommendations-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(3, minmax(0, 1fr));
             gap: 16px;
             margin-top: 8px;
         }
@@ -574,6 +629,7 @@
             transition: all 0.3s ease;
             cursor: pointer;
             position: relative;
+            min-width: 0;
         }
 
         .recommendation-item:hover {
@@ -592,16 +648,13 @@
 
         .recommendation-item .rec-label {
             position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
+            bottom: 0; left: 0; right: 0;
             background: linear-gradient(transparent, rgba(0, 0, 0, 0.85));
             padding: 30px 14px 12px 14px;
             font-size: 13px;
             font-weight: 500;
             color: #e4e4e7;
             text-align: center;
-            letter-spacing: 0.3px;
         }
 
         .recommendation-item .rec-label i {
@@ -613,11 +666,9 @@
         .modal-overlay {
             display: none;
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.85);
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.9);
             z-index: 1000;
             justify-content: center;
             align-items: center;
@@ -625,9 +676,7 @@
             padding: 30px;
         }
 
-        .modal-overlay.active {
-            display: flex;
-        }
+        .modal-overlay.active { display: flex; }
 
         .modal-content {
             position: relative;
@@ -656,7 +705,6 @@
             color: #fff;
             font-size: 28px;
             cursor: pointer;
-            transition: all 0.3s ease;
             background: rgba(0, 0, 0, 0.5);
             width: 44px;
             height: 44px;
@@ -666,6 +714,7 @@
             justify-content: center;
             border: none;
             z-index: 10;
+            transition: all 0.3s ease;
         }
 
         .modal-close:hover {
@@ -675,22 +724,47 @@
 
         .modal-label {
             position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            bottom: 0; left: 0; right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.85));
             padding: 40px 20px 16px 20px;
             color: #fff;
             font-size: 15px;
             font-weight: 500;
             text-align: center;
-            letter-spacing: 0.5px;
         }
 
         .modal-label i {
             color: #7c3aed;
             margin-right: 8px;
         }
+
+        .modal-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(124, 58, 237, 0.8);
+            color: #fff;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            z-index: 20;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-nav:hover {
+            background: #7c3aed;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .modal-prev { left: 15px; }
+        .modal-next { right: 15px; }
 
         /* ===== ВИДЕО ===== */
         .video-wrapper {
@@ -710,9 +784,7 @@
             margin-bottom: 8px;
         }
 
-        .video-wrapper .video-label i {
-            color: #7c3aed;
-        }
+        .video-wrapper .video-label i { color: #7c3aed; }
 
         .video-download-btn {
             display: inline-block;
@@ -729,20 +801,11 @@
         .video-download-btn:hover {
             background: #6d28d9;
             transform: scale(1.05);
-            box-shadow: 0 10px 30px rgba(124, 58, 237, 0.3);
         }
 
-        .video-download-btn i {
-            margin-right: 10px;
-        }
+        .video-download-btn i { margin-right: 10px; }
 
         /* ===== ПРАВАЯ КОЛОНКА ===== */
-        .side-col {
-            display: flex;
-            flex-direction: column;
-            gap: 32px;
-        }
-
         .skill-list {
             display: flex;
             flex-wrap: wrap;
@@ -766,7 +829,6 @@
             background: #7c3aed;
             color: #fff;
             border-color: #7c3aed;
-            box-shadow: 0 10px 30px rgba(124, 58, 237, 0.3);
         }
 
         .lang-item {
@@ -777,9 +839,7 @@
             font-size: 15px;
         }
 
-        .lang-item:last-child {
-            border-bottom: 0;
-        }
+        .lang-item:last-child { border-bottom: 0; }
 
         .edu-item {
             margin-bottom: 18px;
@@ -801,7 +861,6 @@
             font-size: 12px;
             font-weight: 600;
             color: #a78bfa;
-            letter-spacing: 0.3px;
             margin-bottom: 6px;
         }
 
@@ -871,9 +930,7 @@
             opacity: 0;
         }
 
-        .stat-item {
-            text-align: center;
-        }
+        .stat-item { text-align: center; }
 
         .stat-number {
             font-size: 28px;
@@ -908,7 +965,7 @@
             transform: rotate(360deg) scale(1.2);
         }
 
-        /* ===== АНИМАЦИИ ===== */
+        /* ===== АНИМАЦИЯ СЕКЦИЙ ===== */
         .grid, .header, .section-title, .exp-item, .project-item, .skill-item, .lang-item, .edu-item, .extra-item, .video-wrapper, .recommendations-grid {
             opacity: 0;
             animation: fadeSlideUp 0.6s ease-out forwards;
@@ -936,24 +993,20 @@
             .resume:hover { box-shadow: none; }
             .pdf-controls { display: none; }
             .photo-wrapper { border-color: #aaa; box-shadow: none; width: 120px; height: 120px; }
-            .photo-wrapper:hover { transform: none; }
             .recommendations-grid { display: none; }
+            .project-gallery { display: none; }
+            .project-gallery-hint { display: none; }
             .modal-overlay { display: none !important; }
             .video-wrapper a { color: #000 !important; }
-            .video-download-btn { background: #eee !important; color: #000 !important; border: 1px solid #aaa; }
+            .video-download-btn { background: #eee !important; color: #000 !important; }
             .tech-tag { background: #eee !important; color: #000 !important; }
             .section-title { color: #7c3aed !important; }
             .stats { display: none; }
-            .exp-item:hover { transform: none; background: #f9f9f9; }
-            .project-item:hover { transform: none; box-shadow: none; background: #f9f9f9; }
-            .skill-item:hover { transform: none; background: #242428; color: #d4d4d9; }
-            .contact-item:hover { transform: none; }
             .project-item .project-results { display: none; }
             .exp-toggle { display: none; }
-            .exp-details { max-height: none !important; opacity: 1 !important; margin-top: 12px !important; padding-top: 12px !important; border-top: 1px dashed #ccc !important; }
+            .exp-details { max-height: none !important; opacity: 1 !important; margin-top: 12px !important; padding-top: 12px !important; }
             .exp-item { background: #fff !important; border: 1px solid #ddd !important; border-left: 4px solid #7c3aed !important; }
             .exp-header h3, .exp-desc { color: #000 !important; }
-            .exp-header .date, .exp-header .company { color: #666 !important; }
             .exp-stack .stack-tag { background: #eee !important; color: #000 !important; }
         }
 
@@ -966,10 +1019,9 @@
             .contacts { text-align: left; width: 100%; }
             .contacts .contact-item { justify-content: flex-start; }
             .name-title .full-name { font-size: 32px; }
-            .name-title .age { font-size: 16px; }
             .stats { flex-wrap: wrap; gap: 15px; }
             .photo-wrapper { width: 130px; height: 130px; }
-            .project-item h4 { font-size: 15px; flex-wrap: wrap; }
+            .project-item h4 { font-size: 15px; }
             .recommendations-grid { grid-template-columns: repeat(2, 1fr); }
             .exp-header { flex-direction: column; align-items: flex-start; }
             .project-item .project-results { grid-template-columns: 1fr; }
@@ -983,10 +1035,20 @@
             .header-left { gap: 20px; }
             .project-item { padding: 14px 16px 14px 22px; }
             .exp-item { padding: 14px 16px 14px 22px; }
-            .project-item .project-results { flex-direction: column; gap: 4px; }
             .recommendations-grid { grid-template-columns: 1fr; }
             .exp-header h3 { font-size: 16px; }
-            .exp-header .date { font-size: 12px; padding: 2px 10px; }
+            .project-gallery .gallery-item {
+                flex: 0 0 120px;
+                width: 120px;
+                height: 215px;
+            }
+            .modal-nav {
+                width: 40px;
+                height: 40px;
+                font-size: 15px;
+            }
+            .modal-prev { left: 8px; }
+            .modal-next { right: 8px; }
         }
     </style>
 </head>
@@ -1034,7 +1096,7 @@
                 <section>
                     <h2 class="section-title"><i class="fas fa-briefcase" style="margin-right: 10px;"></i> Опыт работы</h2>
 
-                    <!-- ===== 1. Администратор баз данных ===== -->
+                    <!-- 1 -->
                     <div class="exp-item">
                         <div class="exp-header">
                             <h3>Администратор баз данных</h3>
@@ -1060,7 +1122,7 @@
                         </div>
                     </div>
 
-                    <!-- ===== 2. Android-разработчик ===== -->
+                    <!-- 2 -->
                     <div class="exp-item">
                         <div class="exp-header">
                             <h3>Android-разработчик (Kotlin)</h3>
@@ -1086,7 +1148,7 @@
                         </div>
                     </div>
 
-                    <!-- ===== 3. Python-разработчик ===== -->
+                    <!-- 3 -->
                     <div class="exp-item">
                         <div class="exp-header">
                             <h3>Python-разработчик (Telegram-бот)</h3>
@@ -1133,6 +1195,7 @@
                 <section>
                     <h2 class="section-title"><i class="fas fa-rocket" style="margin-right: 10px;"></i> Ключевые проекты</h2>
 
+                    <!-- Проект 1 -->
                     <div class="project-item">
                         <h4>
                             <span>📱 Android-приложение для операторов БПЛА</span>
@@ -1158,6 +1221,7 @@
                         </div>
                     </div>
 
+                    <!-- Проект 2 -->
                     <div class="project-item">
                         <h4>
                             <span>🤖 Telegram-бот для carych.ru</span>
@@ -1182,11 +1246,85 @@
                             <span class="tech-tag">REST API</span>
                             <span class="tech-tag">Git</span>
                         </div>
-                  
+                    </div>
+
+                    <!-- Проект 3: GymDiary -->
+                    <div class="project-item">
+                        <h4>
+                            <span>💪 GymDiary — трекер тренировок</span>
+                            <span class="project-role">Личный проект · Android</span>
+                        </h4>
+                        <div class="project-desc">
+                            <strong>Задача:</strong> разработать Android-приложение для ведения дневника тренировок с возможностью отслеживать упражнения, подходы, вес и прогресс. Обеспечить удобный ввод данных и наглядную статистику.
+                        </div>
+                        <div class="project-desc" style="margin-top: 6px;">
+                            <strong>Результат:</strong> создано полнофункциональное приложение с базой из 100+ упражнений, таймером отдыха, системой рекордов и графиками прогресса. Реализован экспорт/импорт данных для переноса между устройствами.
+                        </div>
+                        <div class="project-results">
+                            <span><i class="fas fa-dumbbell"></i> 100+ упражнений в базе</span>
+                            <span><i class="fas fa-chart-line"></i> Графики прогресса</span>
+                            <span><i class="fas fa-trophy"></i> Система рекордов</span>
+                            <span><i class="fas fa-clock"></i> Таймер отдыха</span>
+                            <span><i class="fas fa-file-export"></i> Экспорт / импорт</span>
+                            <span><i class="fas fa-child"></i> Карта мышц</span>
+                        </div>
+                        <div>
+                            <span class="tech-tag">Kotlin</span>
+                            <span class="tech-tag">Android SDK</span>
+                            <span class="tech-tag">Room DB</span>
+                            <span class="tech-tag">MPAndroidChart</span>
+                            <span class="tech-tag">RepDB API</span>
+                        </div>
+
+                        <!-- Галерея -->
+                        <div class="project-gallery">
+                            <div class="gallery-item" onclick="openModal('gym1.jpg', 'GymDiary — Экран приветствия', galleryGym, 0)">
+                                <img src="gym1.jpg" alt="GymDiary 1">
+                                <span class="gallery-index">1 / 10</span>
+                            </div>
+                            <div class="gallery-item" onclick="openModal('gym2.jpg', 'GymDiary — Выбор упражнения', galleryGym, 1)">
+                                <img src="gym2.jpg" alt="GymDiary 2">
+                                <span class="gallery-index">2 / 10</span>
+                            </div>
+                            <div class="gallery-item" onclick="openModal('gym3.jpg', 'GymDiary — Список упражнений', galleryGym, 2)">
+                                <img src="gym3.jpg" alt="GymDiary 3">
+                                <span class="gallery-index">3 / 10</span>
+                            </div>
+                            <div class="gallery-item" onclick="openModal('gym4.jpg', 'GymDiary — Статистика веса', galleryGym, 3)">
+                                <img src="gym4.jpg" alt="GymDiary 4">
+                                <span class="gallery-index">4 / 10</span>
+                            </div>
+                            <div class="gallery-item" onclick="openModal('gym5.jpg', 'GymDiary — Мои рекорды', galleryGym, 4)">
+                                <img src="gym5.jpg" alt="GymDiary 5">
+                                <span class="gallery-index">5 / 10</span>
+                            </div>
+                            <div class="gallery-item" onclick="openModal('gym6.jpg', 'GymDiary — Строение мышц', galleryGym, 5)">
+                                <img src="gym6.jpg" alt="GymDiary 6">
+                                <span class="gallery-index">6 / 10</span>
+                            </div>
+                            <div class="gallery-item" onclick="openModal('gym7.jpg', 'GymDiary — Экспорт данных', galleryGym, 6)">
+                                <img src="gym7.jpg" alt="GymDiary 7">
+                                <span class="gallery-index">7 / 10</span>
+                            </div>
+                            <div class="gallery-item" onclick="openModal('gym8.jpg', 'GymDiary — Тренировка', galleryGym, 7)">
+                                <img src="gym8.jpg" alt="GymDiary 8">
+                                <span class="gallery-index">8 / 10</span>
+                            </div>
+                            <div class="gallery-item" onclick="openModal('gym9.jpg', 'GymDiary — Новый рекорд', galleryGym, 8)">
+                                <img src="gym9.jpg" alt="GymDiary 9">
+                                <span class="gallery-index">9 / 10</span>
+                            </div>
+                            <div class="gallery-item" onclick="openModal('gym10.jpg', 'GymDiary — О разработчике', galleryGym, 9)">
+                                <img src="gym10.jpg" alt="GymDiary 10">
+                                <span class="gallery-index">10 / 10</span>
+                            </div>
+                        </div>
+                        <div class="project-gallery-hint">
+                            <i class="fas fa-arrows-alt-h"></i> Прокрутите вправо, чтобы увидеть все скриншоты · кликните, чтобы увеличить
+                        </div>
                     </div>
                 </section>
 
-                <!-- ===== РЕКОМЕНДАЦИИ ===== -->
                 <section>
                     <h2 class="section-title"><i class="fas fa-star" style="margin-right: 10px;"></i> Рекомендации</h2>
                     <div class="recommendations-grid">
@@ -1275,7 +1413,7 @@
 
         <div class="stats">
             <div class="stat-item">
-                <span class="stat-number" id="projectsCount">2</span>
+                <span class="stat-number" id="projectsCount">3</span>
                 <span class="stat-label">Проекта</span>
             </div>
             <div class="stat-item">
@@ -1297,17 +1435,38 @@
         </div>
     </div>
 
-    <!-- ===== МОДАЛЬНОЕ ОКНО ===== -->
+    <!-- Модальное окно -->
     <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
         <div class="modal-content" onclick="event.stopPropagation()">
             <button class="modal-close" onclick="closeModal()">&times;</button>
-            <img id="modalImage" src="" alt="Рекомендация">
+            <button class="modal-nav modal-prev" id="modalPrev" onclick="navigateGallery(-1)">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="modal-nav modal-next" id="modalNext" onclick="navigateGallery(1)">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            <img id="modalImage" src="" alt="Просмотр">
             <div class="modal-label" id="modalLabel"><i class="fas fa-file-image"></i> </div>
         </div>
     </div>
 
     <script>
-        // ===== РАСКРЫВАЮЩИЙСЯ СПИСОК =====
+        const galleryGym = [
+            { src: 'gym1.jpg',  label: 'GymDiary — Экран приветствия' },
+            { src: 'gym2.jpg',  label: 'GymDiary — Выбор упражнения' },
+            { src: 'gym3.jpg',  label: 'GymDiary — Список упражнений' },
+            { src: 'gym4.jpg',  label: 'GymDiary — Статистика веса' },
+            { src: 'gym5.jpg',  label: 'GymDiary — Мои рекорды' },
+            { src: 'gym6.jpg',  label: 'GymDiary — Строение мышц' },
+            { src: 'gym7.jpg',  label: 'GymDiary — Экспорт данных' },
+            { src: 'gym8.jpg',  label: 'GymDiary — Тренировка' },
+            { src: 'gym9.jpg',  label: 'GymDiary — Новый рекорд' },
+            { src: 'gym10.jpg', label: 'GymDiary — О разработчике' }
+        ];
+
+        let currentGallery = [];
+        let currentIndex = 0;
+
         function toggleExp(button) {
             const details = button.nextElementSibling;
             const isOpen = details.classList.contains('open');
@@ -1323,36 +1482,65 @@
             }
         }
 
-        // ===== ОТКРЫТИЕ МОДАЛЬНОГО ОКНА =====
-        function openModal(imageSrc, labelText) {
+        function openModal(imageSrc, labelText, gallery = null, index = 0) {
             const overlay = document.getElementById('modalOverlay');
             const img = document.getElementById('modalImage');
             const label = document.getElementById('modalLabel');
+            
+            if (gallery && gallery.length > 0) {
+                currentGallery = gallery;
+                currentIndex = index;
+            } else {
+                currentGallery = [];
+                currentIndex = 0;
+            }
             
             img.src = imageSrc;
             label.innerHTML = '<i class="fas fa-file-image"></i> ' + labelText;
             overlay.classList.add('active');
             document.body.style.overflow = 'hidden';
+            
+            updateNavButtons();
         }
 
-        // ===== ЗАКРЫТИЕ МОДАЛЬНОГО ОКНА =====
+        function navigateGallery(direction) {
+            if (currentGallery.length === 0) return;
+            currentIndex = (currentIndex + direction + currentGallery.length) % currentGallery.length;
+            const item = currentGallery[currentIndex];
+            
+            document.getElementById('modalImage').src = item.src;
+            document.getElementById('modalLabel').innerHTML = '<i class="fas fa-file-image"></i> ' + item.label;
+        }
+
+        function updateNavButtons() {
+            const navPrev = document.getElementById('modalPrev');
+            const navNext = document.getElementById('modalNext');
+            
+            if (currentGallery.length > 1) {
+                navPrev.style.display = 'flex';
+                navNext.style.display = 'flex';
+            } else {
+                navPrev.style.display = 'none';
+                navNext.style.display = 'none';
+            }
+        }
+
         function closeModal(event) {
             if (event && event.target !== event.currentTarget && !event.target.closest('.modal-close')) {
                 return;
             }
-            const overlay = document.getElementById('modalOverlay');
-            overlay.classList.remove('active');
+            document.getElementById('modalOverlay').classList.remove('active');
             document.body.style.overflow = '';
+            currentGallery = [];
+            currentIndex = 0;
         }
 
-        // ===== ЗАКРЫТИЕ ПО КЛАВИШЕ ESC =====
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeModal();
-            }
+            if (e.key === 'Escape') closeModal();
+            else if (e.key === 'ArrowLeft') navigateGallery(-1);
+            else if (e.key === 'ArrowRight') navigateGallery(1);
         });
 
-        // ===== АНИМАЦИЯ СТАТИСТИКИ =====
         document.addEventListener('DOMContentLoaded', function() {
             const numbers = document.querySelectorAll('.stat-number');
             numbers.forEach((el, index) => {
