@@ -1,1562 +1,382 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Резюме Брызгалова Кирилла Алексеевича — разработчика">
-    <meta name="theme-color" content="#7c3aed">
-    <title>Резюме · Брызгалов Кирилл Алексеевич</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: #0e0e10;
-            color: #e4e4e7;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-            padding: 30px 15px;
-            line-height: 1.5;
-            overflow-x: hidden;
-        }
-
-        /* ===== АНИМАЦИИ ===== */
-        @keyframes fadeSlideUp {
-            0% { opacity: 0; transform: translateY(40px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-        @keyframes photoAppear {
-            0% { opacity: 0; transform: scale(0.8) rotate(-5deg); }
-            100% { opacity: 1; transform: scale(1) rotate(0); }
-        }
-        @keyframes modalFadeIn {
-            0% { opacity: 0; transform: scale(0.9); }
-            100% { opacity: 1; transform: scale(1); }
-        }
-        @keyframes modalBgFade {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
-        }
-
-        /* ===== КНОПКА PDF ===== */
-        .pdf-controls {
-            width: 100%;
-            max-width: 1000px;
-            display: flex;
-            justify-content: flex-end;
-            margin-bottom: 15px;
-            animation: fadeSlideUp 0.6s ease-out;
-        }
-
-        .pdf-btn {
-            background: #7c3aed;
-            color: #fff;
-            border: none;
-            padding: 10px 24px;
-            border-radius: 40px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            transition: all 0.3s ease;
-            font-family: 'Inter', sans-serif;
-            animation: pulse 2s infinite;
-        }
-
-        .pdf-btn:hover {
-            background: #6d28d9;
-            transform: scale(1.05);
-            box-shadow: 0 0 30px rgba(124, 58, 237, 0.4);
-        }
-
-        /* ===== КАРТОЧКА РЕЗЮМЕ ===== */
-        .resume {
-            max-width: 1000px;
-            width: 100%;
-            background: #18181b;
-            border-radius: 28px;
-            padding: 45px 50px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
-            border: 1px solid #2a2a2e;
-            animation: fadeSlideUp 0.8s ease-out;
-        }
-
-        /* ===== ШАПКА С ФОТО ===== */
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            margin-bottom: 40px;
-            padding-bottom: 30px;
-            border-bottom: 1px solid #2a2a2e;
-            gap: 20px;
-        }
-
-        .header-left {
-            display: flex;
-            align-items: center;
-            gap: 35px;
-        }
-
-        .photo-wrapper {
-            width: 150px;
-            height: 150px;
-            flex-shrink: 0;
-            border-radius: 50%;
-            border: 3px solid #7c3aed;
-            overflow: hidden;
-            box-shadow: 0 0 30px rgba(124, 58, 237, 0.2);
-            transition: all 0.3s ease;
-            animation: photoAppear 0.6s ease-out 0.2s forwards;
-            opacity: 0;
-        }
-
-        .photo-wrapper:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 50px rgba(124, 58, 237, 0.4);
-            border-color: #a78bfa;
-        }
-
-        .photo-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .name-title {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-        }
-
-        .name-title .full-name {
-            font-size: 38px;
-            font-weight: 700;
-            letter-spacing: -1px;
-            color: #ffffff;
-            line-height: 1.1;
-        }
-
-        .name-title .age {
-            font-size: 16px;
-            font-weight: 400;
-            color: #8a8a94;
-            margin-top: 2px;
-        }
-
-        .contacts {
-            text-align: right;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-
-        .contacts .contact-item {
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            gap: 12px;
-            font-size: 14px;
-            color: #b0b0b8;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .contacts .contact-item i {
-            color: #7c3aed;
-            width: 18px;
-            font-size: 15px;
-            transition: all 0.3s ease;
-        }
-
-        .contacts .contact-item:hover {
-            transform: translateX(-5px);
-        }
-
-        .contacts .contact-item:hover i {
-            transform: rotate(10deg) scale(1.2);
-            color: #a78bfa;
-        }
-
-        /* ===== ГЛАВНАЯ СЕТКА (ИСПРАВЛЕНО) ===== */
-        .grid {
-            display: grid;
-            grid-template-columns: minmax(0, 2.2fr) minmax(0, 1fr);
-            gap: 40px;
-        }
-
-        .main-col {
-            display: flex;
-            flex-direction: column;
-            gap: 32px;
-            min-width: 0;
-            max-width: 100%;
-        }
-
-        .side-col {
-            display: flex;
-            flex-direction: column;
-            gap: 32px;
-            min-width: 0;
-            max-width: 100%;
-        }
-
-        .section-title {
-            font-size: 14px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1.2px;
-            color: #7c3aed;
-            margin-bottom: 16px;
-            border-bottom: 1px solid #2a2a2e;
-            padding-bottom: 8px;
-        }
-
-        /* ===== ОПЫТ РАБОТЫ ===== */
-        .exp-item {
-            position: relative;
-            background: #1f1f23;
-            padding: 18px 22px 18px 28px;
-            border-radius: 14px;
-            margin-bottom: 18px;
-            border: 1px solid #2a2a2e;
-            border-left: 4px solid #7c3aed;
-            transition: all 0.3s ease;
-            min-width: 0;
-        }
-
-        .exp-item::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; bottom: 0;
-            width: 4px;
-            background: linear-gradient(180deg, #7c3aed, #a78bfa, #7c3aed);
-            background-size: 100% 200%;
-            transition: background-position 0.4s ease;
-        }
-
-        .exp-item:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(124, 58, 237, 0.12), 0 5px 15px rgba(0, 0, 0, 0.4);
-            background: #22222a;
-            border-color: #3a3a3e;
-        }
-
-        .exp-item:hover::before { background-position: 0 100%; }
-        .exp-item:last-child { margin-bottom: 0; }
-
-        .exp-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            flex-wrap: wrap;
-            margin-bottom: 10px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #2a2a2e;
-            gap: 8px;
-        }
-
-        .exp-header h3 {
-            font-size: 18px;
-            font-weight: 600;
-            color: #ffffff;
-        }
-
-        .exp-header .company {
-            font-weight: 500;
-            color: #b0b0b8;
-            font-size: 15px;
-        }
-
-        .exp-header .company a {
-            color: #b0b0b8;
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-
-        .exp-header .company a:hover { color: #a78bfa; }
-
-        .exp-header .date {
-            font-size: 13px;
-            color: #a78bfa;
-            background: #2a2a30;
-            padding: 3px 12px;
-            border-radius: 30px;
-            font-weight: 500;
-        }
-
-        .exp-stack {
-            margin-bottom: 12px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-        }
-
-        .exp-stack .stack-tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: #242428;
-            padding: 3px 12px;
-            border-radius: 30px;
-            font-size: 12px;
-            font-weight: 500;
-            color: #c8c8cf;
-            border: 1px solid #2f2f36;
-            transition: all 0.3s ease;
-        }
-
-        .exp-stack .stack-tag:hover {
-            background: #2f2f36;
-            color: #e4e4e7;
-            border-color: #7c3aed;
-            transform: translateY(-1px);
-        }
-
-        .exp-stack .stack-tag i {
-            font-size: 11px;
-            color: #7c3aed;
-        }
-
-        .exp-toggle {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            width: 100%;
-            background: #242428;
-            color: #a78bfa;
-            border: 1px solid #2f2f36;
-            padding: 10px 16px;
-            border-radius: 30px;
-            font-size: 13px;
-            font-weight: 500;
-            font-family: 'Inter', sans-serif;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            letter-spacing: 0.3px;
-        }
-
-        .exp-toggle:hover {
-            background: #2f2f36;
-            color: #c4b5fd;
-            border-color: #7c3aed;
-            box-shadow: 0 5px 15px rgba(124, 58, 237, 0.15);
-        }
-
-        .exp-toggle .toggle-arrow {
-            display: inline-block;
-            transition: transform 0.3s ease;
-            font-size: 14px;
-        }
-
-        .exp-toggle.open .toggle-arrow { transform: rotate(90deg); }
-
-        .exp-details {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease, opacity 0.3s ease, margin-top 0.3s ease;
-            opacity: 0;
-            margin-top: 0;
-        }
-
-        .exp-details.open {
-            max-height: 1200px;
-            opacity: 1;
-            margin-top: 12px;
-            padding-top: 12px;
-            border-top: 1px dashed #2f2f36;
-        }
-
-        .exp-desc {
-            color: #c8c8cf;
-            font-size: 15px;
-            list-style: none;
-        }
-
-        .exp-desc li {
-            position: relative;
-            padding-left: 20px;
-            margin-bottom: 8px;
-            line-height: 1.55;
-        }
-
-        .exp-desc li::before {
-            content: "▹";
-            position: absolute;
-            left: 0;
-            color: #7c3aed;
-            font-weight: 700;
-        }
-
-        /* ===== ПРОЕКТЫ ===== */
-        .project-item {
-            position: relative;
-            background: #1f1f23;
-            padding: 18px 22px 18px 28px;
-            border-radius: 14px;
-            margin-bottom: 16px;
-            border: 1px solid #2a2a2e;
-            border-left: 4px solid #7c3aed;
-            transition: all 0.3s ease;
-            min-width: 0;
-            max-width: 100%;
-            overflow: hidden;
-        }
-
-        .project-item::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; bottom: 0;
-            width: 4px;
-            background: linear-gradient(180deg, #7c3aed, #a78bfa, #7c3aed);
-            background-size: 100% 200%;
-            transition: background-position 0.4s ease;
-        }
-
-        .project-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(124, 58, 237, 0.15), 0 5px 15px rgba(0, 0, 0, 0.4);
-            background: #22222a;
-            border-color: #3a3a3e;
-        }
-
-        .project-item:hover::before { background-position: 0 100%; }
-
-        .project-item h4 {
-            color: #fff;
-            font-weight: 600;
-            font-size: 17px;
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            flex-wrap: wrap;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #2a2a2e;
-        }
-
-        .project-item .project-role {
-            font-size: 12px;
-            font-weight: 500;
-            color: #a78bfa;
-            background: #2a2a30;
-            padding: 3px 12px;
-            border-radius: 20px;
-            line-height: 20px;
-        }
-
-        .project-item .project-desc {
-            color: #c8c8cf;
-            font-size: 14px;
-            line-height: 1.65;
-            margin-top: 6px;
-            padding-left: 4px;
-        }
-
-        .project-item .project-desc strong {
-            color: #a78bfa;
-            font-weight: 600;
-        }
-
-        .project-item .project-results {
-            margin-top: 12px;
-            padding-top: 12px;
-            border-top: 1px dashed #2f2f36;
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 8px 20px;
-            font-size: 13px;
-            color: #b0b0b8;
-        }
-
-        .project-item .project-results span {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 4px 0;
-            transition: color 0.2s ease;
-            min-width: 0;
-        }
-
-        .project-item .project-results span:hover { color: #e4e4e7; }
-
-        .project-item .project-results i {
-            color: #7c3aed;
-            font-size: 14px;
-            flex-shrink: 0;
-            width: 16px;
-            text-align: center;
-        }
-
-        .project-item .tech-tag {
-            display: inline-block;
-            background: #2a2a30;
-            padding: 3px 12px;
-            border-radius: 30px;
-            font-size: 12px;
-            color: #c8c8cf;
-            margin-right: 6px;
-            margin-top: 10px;
-            border: 1px solid #2f2f36;
-            transition: all 0.3s ease;
-        }
-
-        .project-item .tech-tag:hover {
-            transform: scale(1.08);
-            background: #7c3aed;
-            color: #fff;
-            border-color: #7c3aed;
-        }
-
-        /* ===== ГАЛЕРЕЯ СКРИНШОТОВ (ИСПРАВЛЕНО) ===== */
-        .project-gallery {
-            display: flex;
-            gap: 12px;
-            overflow-x: auto;
-            overflow-y: hidden;
-            padding: 12px 4px 16px 4px;
-            margin-top: 14px;
-            scroll-snap-type: x mandatory;
-            scrollbar-width: thin;
-            scrollbar-color: #7c3aed #1f1f23;
-            border-top: 1px dashed #2f2f36;
-            width: 100%;
-            max-width: 100%;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        .project-gallery::-webkit-scrollbar {
-            height: 6px;
-        }
-
-        .project-gallery::-webkit-scrollbar-track {
-            background: #1f1f23;
-            border-radius: 10px;
-        }
-
-        .project-gallery::-webkit-scrollbar-thumb {
-            background: linear-gradient(90deg, #7c3aed, #a78bfa);
-            border-radius: 10px;
-        }
-
-        .project-gallery .gallery-item {
-            flex: 0 0 140px;
-            width: 140px;
-            height: 250px;
-            border-radius: 12px;
-            overflow: hidden;
-            cursor: pointer;
-            border: 2px solid #2a2a2e;
-            transition: all 0.3s ease;
-            scroll-snap-align: start;
-            background: #0e0e10;
-            position: relative;
-        }
-
-        .project-gallery .gallery-item:hover {
-            transform: translateY(-5px) scale(1.03);
-            border-color: #7c3aed;
-            box-shadow: 0 15px 40px rgba(124, 58, 237, 0.25);
-        }
-
-        .project-gallery .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .project-gallery .gallery-item .gallery-index {
-            position: absolute;
-            top: 8px;
-            right: 8px;
-            background: rgba(0, 0, 0, 0.7);
-            color: #a78bfa;
-            font-size: 11px;
-            font-weight: 600;
-            padding: 2px 8px;
-            border-radius: 20px;
-            border: 1px solid #7c3aed;
-            backdrop-filter: blur(4px);
-        }
-
-        .project-gallery-hint {
-            font-size: 12px;
-            color: #6b6b75;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            margin-top: 4px;
-            padding-left: 4px;
-        }
-
-        .project-gallery-hint i {
-            color: #7c3aed;
-            animation: pulse 2s infinite;
-        }
-
-        /* ===== РЕКОМЕНДАЦИИ ===== */
-        .recommendations-grid {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 16px;
-            margin-top: 8px;
-        }
-
-        .recommendation-item {
-            background: #1f1f23;
-            border-radius: 14px;
-            overflow: hidden;
-            border: 1px solid #2a2a2e;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            position: relative;
-            min-width: 0;
-        }
-
-        .recommendation-item:hover {
-            transform: translateY(-5px) scale(1.02);
-            border-color: #7c3aed;
-            box-shadow: 0 15px 40px rgba(124, 58, 237, 0.2);
-        }
-
-        .recommendation-item img {
-            width: 100%;
-            height: auto;
-            display: block;
-            object-fit: cover;
-            aspect-ratio: 4 / 3;
-        }
-
-        .recommendation-item .rec-label {
-            position: absolute;
-            bottom: 0; left: 0; right: 0;
-            background: linear-gradient(transparent, rgba(0, 0, 0, 0.85));
-            padding: 30px 14px 12px 14px;
-            font-size: 13px;
-            font-weight: 500;
-            color: #e4e4e7;
-            text-align: center;
-        }
-
-        .recommendation-item .rec-label i {
-            color: #7c3aed;
-            margin-right: 6px;
-        }
-
-        /* ===== МОДАЛЬНОЕ ОКНО ===== */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            animation: modalBgFade 0.3s ease;
-            padding: 30px;
-        }
-
-        .modal-overlay.active { display: flex; }
-
-        .modal-content {
-            position: relative;
-            max-width: 90%;
-            max-height: 90%;
-            animation: modalFadeIn 0.3s ease;
-            border-radius: 14px;
-            overflow: hidden;
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8);
-            border: 1px solid #2a2a2e;
-        }
-
-        .modal-content img {
-            width: 100%;
-            height: auto;
-            max-height: 85vh;
-            object-fit: contain;
-            display: block;
-            border-radius: 14px;
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 12px;
-            right: 16px;
-            color: #fff;
-            font-size: 28px;
-            cursor: pointer;
-            background: rgba(0, 0, 0, 0.5);
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: none;
-            z-index: 10;
-            transition: all 0.3s ease;
-        }
-
-        .modal-close:hover {
-            background: rgba(124, 58, 237, 0.8);
-            transform: rotate(90deg) scale(1.1);
-        }
-
-        .modal-label {
-            position: absolute;
-            bottom: 0; left: 0; right: 0;
-            background: linear-gradient(transparent, rgba(0, 0, 0, 0.85));
-            padding: 40px 20px 16px 20px;
-            color: #fff;
-            font-size: 15px;
-            font-weight: 500;
-            text-align: center;
-        }
-
-        .modal-label i {
-            color: #7c3aed;
-            margin-right: 8px;
-        }
-
-        .modal-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(124, 58, 237, 0.8);
-            color: #fff;
-            border: none;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-            transition: all 0.3s ease;
-            z-index: 20;
-            backdrop-filter: blur(4px);
-        }
-
-        .modal-nav:hover {
-            background: #7c3aed;
-            transform: translateY(-50%) scale(1.1);
-        }
-
-        .modal-prev { left: 15px; }
-        .modal-next { right: 15px; }
-
-        /* ===== ВИДЕО ===== */
-        .video-wrapper {
-            background: #1a1a1e;
-            border-radius: 14px;
-            padding: 12px;
-            margin-top: 14px;
-            border: 1px solid #2f2f36;
-        }
-
-        .video-wrapper .video-label {
-            font-size: 13px;
-            color: #8a8a94;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 8px;
-        }
-
-        .video-wrapper .video-label i { color: #7c3aed; }
-
-        .video-download-btn {
-            display: inline-block;
-            background: #7c3aed;
-            color: #fff;
-            padding: 12px 28px;
-            border-radius: 40px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 15px;
-            transition: all 0.3s ease;
-        }
-
-        .video-download-btn:hover {
-            background: #6d28d9;
-            transform: scale(1.05);
-        }
-
-        .video-download-btn i { margin-right: 10px; }
-
-        /* ===== ПРАВАЯ КОЛОНКА ===== */
-        .skill-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 4px;
-        }
-
-        .skill-list .skill-item {
-            background: #242428;
-            padding: 4px 16px;
-            border-radius: 30px;
-            font-size: 14px;
-            color: #d4d4d9;
-            border: 1px solid #2a2a2e;
-            transition: all 0.3s ease;
-            cursor: default;
-        }
-
-        .skill-list .skill-item:hover {
-            transform: scale(1.1) translateY(-3px);
-            background: #7c3aed;
-            color: #fff;
-            border-color: #7c3aed;
-        }
-
-        .lang-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 6px 0;
-            border-bottom: 1px solid #242428;
-            font-size: 15px;
-        }
-
-        .lang-item:last-child { border-bottom: 0; }
-
-        .edu-item {
-            margin-bottom: 18px;
-            padding-bottom: 18px;
-            border-bottom: 1px solid #242428;
-        }
-
-        .edu-item:last-child {
-            margin-bottom: 0;
-            padding-bottom: 0;
-            border-bottom: 0;
-        }
-
-        .edu-item .edu-level {
-            display: inline-block;
-            background: #2a2a30;
-            padding: 2px 14px;
-            border-radius: 30px;
-            font-size: 12px;
-            font-weight: 600;
-            color: #a78bfa;
-            margin-bottom: 6px;
-        }
-
-        .edu-item .edu-title {
-            font-weight: 600;
-            font-size: 16px;
-            color: #ffffff;
-            margin-bottom: 2px;
-        }
-
-        .edu-item .edu-sub {
-            font-size: 14px;
-            color: #b0b0b8;
-            line-height: 1.4;
-        }
-
-        .edu-item .edu-meta {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px 18px;
-            margin-top: 4px;
-            font-size: 13px;
-            color: #8a8a94;
-        }
-
-        .edu-item .edu-meta span {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .edu-item .edu-meta i {
-            color: #7c3aed;
-            font-size: 13px;
-            width: 16px;
-        }
-
-        .extra-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 6px 0;
-            font-size: 14px;
-            color: #c8c8cf;
-        }
-
-        .extra-item i {
-            color: #7c3aed;
-            width: 20px;
-            font-size: 16px;
-            transition: all 0.3s ease;
-        }
-
-        .extra-item:hover i {
-            transform: rotate(15deg) scale(1.2);
-            color: #a78bfa;
-        }
-
-        /* ===== СТАТИСТИКА ===== */
-        .stats {
-            display: flex;
-            justify-content: space-around;
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid #2a2a2e;
-            animation: fadeSlideUp 0.8s ease-out 0.8s forwards;
-            opacity: 0;
-        }
-
-        .stat-item { text-align: center; }
-
-        .stat-number {
-            font-size: 28px;
-            font-weight: 700;
-            color: #7c3aed;
-            display: block;
-        }
-
-        .stat-label {
-            font-size: 14px;
-            color: #8a8a94;
-            margin-top: 4px;
-        }
-
-        .footnote {
-            margin-top: 35px;
-            text-align: center;
-            font-size: 13px;
-            color: #4a4a52;
-            border-top: 1px solid #242428;
-            padding-top: 22px;
-            animation: fadeSlideUp 0.8s ease-out 1s forwards;
-            opacity: 0;
-        }
-
-        .footnote i {
-            color: #7c3aed;
-            transition: all 0.3s ease;
-        }
-
-        .footnote:hover i {
-            transform: rotate(360deg) scale(1.2);
-        }
-
-        /* ===== АНИМАЦИЯ СЕКЦИЙ ===== */
-        .grid, .header, .section-title, .exp-item, .project-item, .skill-item, .lang-item, .edu-item, .extra-item, .video-wrapper, .recommendations-grid {
-            opacity: 0;
-            animation: fadeSlideUp 0.6s ease-out forwards;
-        }
-
-        .header { animation-delay: 0.1s; }
-        .grid .section-title { animation-delay: 0.3s; }
-        .grid .exp-item { animation-delay: 0.4s; }
-        .grid .project-item { animation-delay: 0.5s; }
-        .side-col .section-title { animation-delay: 0.3s; }
-        .side-col .skill-item { animation-delay: 0.4s; }
-        .side-col .lang-item { animation-delay: 0.5s; }
-        .side-col .edu-item { animation-delay: 0.6s; }
-        .side-col .extra-item { animation-delay: 0.7s; }
-        .video-wrapper { animation-delay: 0.6s; }
-        .recommendations-grid { animation-delay: 0.6s; }
-        .recommendations-grid .recommendation-item:nth-child(1) { animation-delay: 0.7s; }
-        .recommendations-grid .recommendation-item:nth-child(2) { animation-delay: 0.8s; }
-        .recommendations-grid .recommendation-item:nth-child(3) { animation-delay: 0.9s; }
-
-        /* ===== ПЕЧАТЬ ===== */
-        @media print {
-            body { background: #fff; padding: 0; }
-            .resume { box-shadow: none; border: 1px solid #ddd; border-radius: 0; padding: 30px; animation: none; }
-            .resume:hover { box-shadow: none; }
-            .pdf-controls { display: none; }
-            .photo-wrapper { border-color: #aaa; box-shadow: none; width: 120px; height: 120px; }
-            .recommendations-grid { display: none; }
-            .project-gallery { display: none; }
-            .project-gallery-hint { display: none; }
-            .modal-overlay { display: none !important; }
-            .video-wrapper a { color: #000 !important; }
-            .video-download-btn { background: #eee !important; color: #000 !important; }
-            .tech-tag { background: #eee !important; color: #000 !important; }
-            .section-title { color: #7c3aed !important; }
-            .stats { display: none; }
-            .project-item .project-results { display: none; }
-            .exp-toggle { display: none; }
-            .exp-details { max-height: none !important; opacity: 1 !important; margin-top: 12px !important; padding-top: 12px !important; }
-            .exp-item { background: #fff !important; border: 1px solid #ddd !important; border-left: 4px solid #7c3aed !important; }
-            .exp-header h3, .exp-desc { color: #000 !important; }
-            .exp-stack .stack-tag { background: #eee !important; color: #000 !important; }
-        }
-
-        /* ===== АДАПТИВНОСТЬ ===== */
-        @media (max-width: 780px) {
-            .resume { padding: 30px 20px; }
-            .grid { grid-template-columns: 1fr; gap: 30px; }
-            .header { flex-direction: column; align-items: flex-start; gap: 16px; }
-            .header-left { flex-wrap: wrap; }
-            .contacts { text-align: left; width: 100%; }
-            .contacts .contact-item { justify-content: flex-start; }
-            .name-title .full-name { font-size: 32px; }
-            .stats { flex-wrap: wrap; gap: 15px; }
-            .photo-wrapper { width: 130px; height: 130px; }
-            .project-item h4 { font-size: 15px; }
-            .recommendations-grid { grid-template-columns: repeat(2, 1fr); }
-            .exp-header { flex-direction: column; align-items: flex-start; }
-            .project-item .project-results { grid-template-columns: 1fr; }
-        }
-
-        @media (max-width: 480px) {
-            .resume { padding: 20px 12px; border-radius: 16px; }
-            .exp-header { flex-direction: column; align-items: flex-start; gap: 4px; }
-            .name-title .full-name { font-size: 26px; }
-            .photo-wrapper { width: 100px; height: 100px; }
-            .header-left { gap: 20px; }
-            .project-item { padding: 14px 16px 14px 22px; }
-            .exp-item { padding: 14px 16px 14px 22px; }
-            .recommendations-grid { grid-template-columns: 1fr; }
-            .exp-header h3 { font-size: 16px; }
-            .project-gallery .gallery-item {
-                flex: 0 0 120px;
-                width: 120px;
-                height: 215px;
-            }
-            .modal-nav {
-                width: 40px;
-                height: 40px;
-                font-size: 15px;
-            }
-            .modal-prev { left: 8px; }
-            .modal-next { right: 8px; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Резюме Брызгалова Кирилла Алексеевича — разработчика">
+<meta name="theme-color" content="#0a0f1e">
+<title>Кирилл Брызгалов · Разработчик</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root{--bg:#0a0f1e;--panel:#121a30;--line:#22304f;--text:#e6ebf7;--dim:#93a0bf;--a:#5b8cff;--b:#2de2c5;--c:#ff7ab6}
+:root[data-theme=light]{--bg:#f4f6fc;--panel:#fff;--line:#dbe2f2;--text:#141b2e;--dim:#5b6785;--a:#3a5fe0;--b:#0fa88f;--c:#d63d86}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{font-family:Onest,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;transition:background .4s,color .4s}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--b);outline-offset:3px}
+h1,h2,h3{font-family:Unbounded,sans-serif;font-weight:500;line-height:1.15}
+.glow{position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(500px circle at var(--x,50%) var(--y,20%),color-mix(in srgb,var(--a) 18%,transparent),transparent 70%)}
+.blob{position:fixed;border-radius:50%;filter:blur(90px);opacity:.28;z-index:0;pointer-events:none;animation:drift 18s ease-in-out infinite alternate}
+.blob.b1{width:420px;height:420px;background:var(--a);top:-120px;left:-100px}
+.blob.b2{width:360px;height:360px;background:var(--b);bottom:-100px;right:-80px;animation-delay:-8s}
+@keyframes drift{to{transform:translate(80px,60px) scale(1.15)}}
+main,nav,footer{position:relative;z-index:1}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+/* nav */
+nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(16px);background:color-mix(in srgb,var(--bg) 70%,transparent);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;gap:16px}
+.links{display:flex;gap:22px;font-size:14px;color:var(--dim);overflow-x:auto;scrollbar-width:none}
+.links a{white-space:nowrap;transition:color .2s}.links a:hover,.links a.on{color:var(--text)}
+.tools{display:flex;gap:8px}
+.ibtn{background:var(--panel);border:1px solid var(--line);color:var(--text);border-radius:50px;padding:8px 16px;font:500 13px Onest;cursor:pointer;transition:.25s;display:inline-flex;gap:8px;align-items:center}
+.ibtn:hover{border-color:var(--a);transform:translateY(-2px)}
+/* hero */
+.hero{padding:80px 0 60px;display:grid;grid-template-columns:1fr auto;gap:50px;align-items:center}
+.hero h1{font-size:clamp(34px,6.2vw,70px);letter-spacing:-2px}
+.hero h1 span{display:block;overflow:hidden}
+.hero h1 span i{display:inline-block;font-style:normal;transform:translateY(110%);animation:up .9s cubic-bezier(.2,.8,.2,1) forwards}
+.hero h1 span:nth-child(2) i{animation-delay:.12s;background:linear-gradient(90deg,var(--a),var(--b));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero h1 span:nth-child(3) i{animation-delay:.24s;color:var(--dim)}
+@keyframes up{to{transform:none}}
+.role{margin:26px 0 8px;font-size:clamp(18px,2.4vw,24px);color:var(--dim);min-height:1.6em}
+.role b{color:var(--text);font-weight:500}
+.caret{display:inline-block;width:2px;height:1em;background:var(--b);vertical-align:-2px;margin-left:3px;animation:blink 1s steps(2) infinite}
+@keyframes blink{50%{opacity:0}}
+.age{color:var(--dim);font-size:15px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.chip{display:inline-flex;align-items:center;gap:10px;padding:10px 18px;border-radius:50px;background:var(--panel);border:1px solid var(--line);font-size:14px;transition:.3s}
+.chip i{color:var(--b)}
+.chip:hover{border-color:var(--b);transform:translateY(-3px);box-shadow:0 10px 30px -10px var(--b)}
+.photo{position:relative;width:250px;height:250px;opacity:0;animation:pop .9s .3s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes pop{from{opacity:0;transform:scale(.85) rotate(-6deg)}to{opacity:1;transform:none}}
+.photo::before{content:"";position:absolute;inset:-6px;border-radius:38% 62% 55% 45%/50% 45% 55% 50%;background:conic-gradient(from 0deg,var(--a),var(--b),var(--c),var(--a));animation:spin 8s linear infinite,morph 9s ease-in-out infinite alternate}
+.photo .in{position:absolute;inset:0;border-radius:38% 62% 55% 45%/50% 45% 55% 50%;overflow:hidden;background:var(--panel);animation:morph 9s ease-in-out infinite alternate;display:grid;place-items:center;font:700 64px Unbounded;color:var(--a)}
+.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes morph{50%{border-radius:55% 45% 40% 60%/45% 60% 40% 55%}100%{border-radius:45% 55% 60% 40%/60% 40% 60% 40%}}
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:20px;overflow:hidden;margin-bottom:20px}
+.stat{background:var(--panel);padding:22px;text-align:center}
+.stat b{display:block;font:700 34px Unbounded;background:linear-gradient(90deg,var(--a),var(--b));-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat span{color:var(--dim);font-size:14px}
+/* sections */
+section{padding:60px 0}
+.h2{display:flex;align-items:center;gap:14px;font-size:clamp(22px,3.4vw,32px);margin-bottom:34px}
+.h2 i{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;font-size:18px;background:linear-gradient(135deg,var(--a),var(--b));color:#fff;flex-shrink:0}
+.rv{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s}
+.rv.show{opacity:1;transform:none}
+.card{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:26px;overflow:hidden;transition:border-color .3s,transform .3s}
+.card::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .3s;background:radial-gradient(360px circle at var(--mx,50%) var(--my,50%),color-mix(in srgb,var(--a) 16%,transparent),transparent 65%)}
+.card:hover{border-color:color-mix(in srgb,var(--a) 60%,var(--line))}
+.card:hover::after{opacity:1}
+/* timeline */
+.tl{position:relative;padding-left:34px;display:grid;gap:22px}
+.tl::before{content:"";position:absolute;left:8px;top:8px;bottom:8px;width:2px;background:linear-gradient(var(--a),var(--b),transparent)}
+.tl .card::before{content:"";position:absolute;left:-33px;top:32px;width:14px;height:14px;border-radius:50%;background:var(--bg);border:3px solid var(--b);box-shadow:0 0 0 5px color-mix(in srgb,var(--b) 20%,transparent)}
+.tl .card{overflow:visible}
+.top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 14px;align-items:baseline}
+.top h3{font-size:18px}
+.co{color:var(--dim);font-size:15px;width:100%;order:3}
+.co a{color:var(--b)}
+.date{font-size:13px;color:var(--a);background:color-mix(in srgb,var(--a) 14%,transparent);padding:4px 14px;border-radius:50px;font-weight:500}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}
+.tag{font-size:12.5px;padding:5px 13px;border-radius:50px;border:1px solid var(--line);color:var(--dim);display:inline-flex;gap:7px;align-items:center;transition:.25s}
+.tag i{color:var(--b);font-size:11px}
+.tag:hover{color:#fff;background:var(--a);border-color:var(--a);transform:translateY(-2px)}
+.tog{width:100%;background:none;border:1px dashed var(--line);color:var(--a);border-radius:50px;padding:9px;font:500 13px Onest;cursor:pointer;transition:.25s}
+.tog:hover{border-color:var(--a);background:color-mix(in srgb,var(--a) 8%,transparent)}
+.tog i{transition:transform .3s;margin-right:6px}.tog.open i{transform:rotate(90deg)}
+.det{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s ease}
+.det.open{grid-template-rows:1fr}
+.det>div{overflow:hidden}
+.det ul{list-style:none;padding-top:16px;display:grid;gap:10px;font-size:15px;color:var(--dim)}
+.det li{padding-left:22px;position:relative}
+.det li::before{content:"";position:absolute;left:0;top:10px;width:8px;height:8px;border-radius:2px;background:var(--b);transform:rotate(45deg)}
+.vid{margin-top:18px;padding:16px;border-radius:16px;background:var(--bg);border:1px solid var(--line);display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;font-size:14px;color:var(--dim)}
+.btn{display:inline-flex;gap:10px;align-items:center;padding:11px 22px;border-radius:50px;background:linear-gradient(90deg,var(--a),var(--b));color:#fff;font-weight:600;font-size:14px;transition:.3s}
+.btn:hover{transform:translateY(-3px);box-shadow:0 12px 30px -8px var(--a)}
+/* projects */
+.pj{display:grid;gap:22px}
+.pj h3{font-size:19px;display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center}
+.role-b{font:500 12px Onest;color:var(--c);background:color-mix(in srgb,var(--c) 14%,transparent);padding:4px 13px;border-radius:50px}
+.pj p{color:var(--dim);font-size:15px;margin-top:12px}
+.pj p b{color:var(--text);font-weight:600}
+.res{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin:20px 0 4px}
+.res span{display:flex;gap:10px;align-items:center;font-size:14px;padding:10px 14px;border-radius:14px;background:var(--bg);border:1px solid var(--line)}
+.res i{color:var(--b);width:18px;text-align:center}
+.gal{display:flex;gap:12px;overflow-x:auto;padding:18px 2px 12px;scroll-snap-type:x mandatory;scrollbar-width:thin;scrollbar-color:var(--a) transparent}
+.gal button{flex:0 0 130px;height:240px;border-radius:16px;overflow:hidden;border:2px solid var(--line);background:var(--bg);cursor:zoom-in;scroll-snap-align:start;padding:0;position:relative;transition:.3s}
+.gal button:hover{transform:translateY(-6px) scale(1.03);border-color:var(--a)}
+.gal img{width:100%;height:100%;object-fit:cover;display:block}
+.hint{font-size:12.5px;color:var(--dim)}
+/* recs */
+.recs{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.rec{display:flex;align-items:center;gap:12px;padding:8px 14px 8px 8px;cursor:zoom-in;border:1px solid var(--line);background:var(--panel);border-radius:16px;color:inherit;font:inherit;text-align:left;transition:.3s;min-width:0}
+.rec:hover{transform:translateY(-3px);border-color:var(--b);box-shadow:0 10px 26px -12px var(--b)}
+.rec img{width:52px;height:52px;flex-shrink:0;border-radius:10px;object-fit:cover;object-position:top;display:block;background:var(--bg);transition:transform .3s}
+.rec:hover img{transform:scale(1.08) rotate(-3deg)}
+.rec span{display:flex;flex-direction:column;gap:2px;font-size:14px;font-weight:500;line-height:1.3;min-width:0}
+.rec span small{font-size:12px;color:var(--dim);font-weight:400;display:flex;gap:6px;align-items:center}
+.rec span small i{color:var(--b)}
+/* side blocks */
+.two{display:grid;grid-template-columns:1.3fr 1fr;gap:22px}
+.stack{display:grid;gap:22px;align-content:start}
+.card h4{font:500 15px Unbounded;margin-bottom:18px;display:flex;gap:10px;align-items:center}
+.card h4 i{color:var(--b)}
+.skills{display:flex;flex-wrap:wrap;gap:10px}
+.sk{padding:7px 16px;border-radius:50px;background:var(--bg);border:1px solid var(--line);font-size:14px;transition:.3s;cursor:default}
+.sk:hover{background:linear-gradient(90deg,var(--a),var(--b));color:#fff;border-color:transparent;transform:translateY(-4px) rotate(-2deg)}
+.row{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--line)}
+.row:last-child{border:0}.row em{font-style:normal;color:var(--dim)}
+.edu+.edu{margin-top:22px;padding-top:22px;border-top:1px solid var(--line)}
+.lvl{font-size:12px;font-weight:600;color:var(--b);background:color-mix(in srgb,var(--b) 14%,transparent);padding:3px 12px;border-radius:50px}
+.edu b{display:block;margin:10px 0 4px;font-size:15px}
+.edu p{font-size:14px;color:var(--dim)}
+.meta{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:8px;font-size:13px;color:var(--dim)}
+.meta i{color:var(--a);margin-right:6px}
+.ex{display:flex;gap:14px;align-items:center;padding:8px 0;font-size:15px}
+.ex i{color:var(--b);width:22px;font-size:17px}
+footer{text-align:center;padding:50px 24px 70px;color:var(--dim);font-size:15px}
+footer b{display:inline-flex;gap:10px;align-items:center;color:var(--text);font-weight:500}
+footer b::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--b);animation:pulse 1.6s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--b) 60%,transparent)}100%{box-shadow:0 0 0 14px transparent}}
+/* modal */
+.modal{position:fixed;inset:0;z-index:100;background:rgba(3,6,15,.92);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:24px}
+.modal.on{display:flex;animation:fade .3s}
+@keyframes fade{from{opacity:0}}
+.modal figure{position:relative;max-width:min(92vw,900px);animation:zoom .35s cubic-bezier(.2,.8,.2,1)}
+@keyframes zoom{from{transform:scale(.92);opacity:0}}
+.modal img{max-width:100%;max-height:82vh;border-radius:16px;display:block;margin:auto}
+.modal figcaption{text-align:center;color:#fff;margin-top:14px;font-size:15px}
+.mb{position:absolute;background:rgba(255,255,255,.12);border:0;color:#fff;width:46px;height:46px;border-radius:50%;cursor:pointer;font-size:18px;transition:.25s}
+.mb:hover{background:var(--a)}
+.mx{top:18px;right:18px}.mp{left:18px;top:50%}.mn{right:18px;top:50%}
+/* bar */
+.bar{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--a),var(--b),var(--c));z-index:200}
+@media(max-width:820px){.hero{grid-template-columns:1fr;padding-top:50px}.photo{order:-1;width:170px;height:170px}.two,.recs{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}.links{display:none}.mp{left:8px}.mn{right:8px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.rv{opacity:1;transform:none}.hero h1 span i{transform:none}}
+@media print{
+ :root{--bg:#fff;--panel:#fff;--line:#ddd;--text:#000;--dim:#333}
+ .glow,.blob,nav,.gal,.hint,.recs,.stats,.tog,.bar,.modal,.vid,footer{display:none!important}
+ .rv{opacity:1!important;transform:none!important}.det{grid-template-rows:1fr!important}
+ section{padding:20px 0}.card{break-inside:avoid;border-radius:8px}.hero h1 span i{transform:none;animation:none;color:#000!important;-webkit-text-fill-color:#000}
+ .photo{width:120px;height:120px;animation:none;opacity:1}
+}
+</style>
 </head>
 <body>
+<div class="bar" id="bar"></div>
+<div class="glow" id="glow"></div><div class="blob b1"></div><div class="blob b2"></div>
 
-    <div class="pdf-controls">
-        <button class="pdf-btn" onclick="window.print()">
-            <i class="fas fa-file-pdf"></i> Сохранить в PDF
-        </button>
+<nav><div class="wrap">
+ <div class="links" id="links">
+  <a href="#top">Обо мне</a><a href="#exp">Опыт</a><a href="#proj">Проекты</a><a href="#rec">Рекомендации</a><a href="#skills">Навыки</a><a href="#edu">Образование</a>
+ </div>
+ <div class="tools">
+  <button class="ibtn" id="theme" aria-label="Сменить тему"><i class="fas fa-moon"></i></button>
+  <button class="ibtn" onclick="window.print()"><i class="fas fa-file-pdf"></i> Сохранить в PDF</button>
+ </div>
+</div></nav>
+
+<main class="wrap" id="top">
+ <header class="hero">
+  <div>
+   <h1 aria-label="Брызгалов Кирилл Алексеевич"><span><i>Брызгалов</i></span><span><i>Кирилл</i></span><span><i>Алексеевич</i></span></h1>
+   <div class="role">Пишу на <b id="typed"></b><span class="caret"></span></div>
+   <div class="age">22 года</div>
+   <div class="chips">
+    <a class="chip" href="mailto:kir.bryzgalov@gmail.com"><i class="fas fa-envelope"></i>kir.bryzgalov@gmail.com</a>
+    <a class="chip" href="tel:+79122475956"><i class="fas fa-phone-alt"></i>+7 (912) 247-59-56</a>
+    <a class="chip" href="https://github.com/LILFORTYSEVEN" target="_blank" rel="noopener"><i class="fab fa-github"></i>github.com/LILFORTYSEVEN</a>
+   </div>
+  </div>
+  <div class="photo"><div class="in">КБ<img src="picture.jpg" alt="Кирилл Брызгалов" onerror="this.remove()"></div></div>
+ </header>
+
+ <div class="stats rv">
+  <div class="stat"><b data-n="3">0</b><span>Проекта</span></div>
+  <div class="stat"><b data-n="10">0</b><span>Технологий</span></div>
+  <div class="stat"><b data-n="3">0</b><span>Места работы</span></div>
+  <div class="stat"><b data-n="2">0</b><span>Образования</span></div>
+ </div>
+
+ <section id="exp">
+  <h2 class="h2 rv"><i class="fas fa-briefcase"></i>Опыт работы</h2>
+  <div class="tl">
+   <article class="card rv">
+    <div class="top"><h3>Администратор баз данных</h3><span class="date">2023 – 2024</span><span class="co">СНТ «Вагонник»</span></div>
+    <div class="tags"><span class="tag"><i class="fas fa-code"></i>1С:Садовод</span><span class="tag"><i class="fas fa-database"></i>SQL (выгрузки)</span><span class="tag"><i class="fab fa-windows"></i>Администрирование Windows</span></div>
+    <button class="tog"><i class="fas fa-chevron-right"></i><span>Показать подробности</span></button>
+    <div class="det"><div><ul>
+     <li>Обработал и ввел массивы первичных данных в учетную систему и базы данных на платформе «1С:Садовод», проверил их целостность и непротиворечивость.</li>
+     <li>Администрировал учетные записи пользователей и администраторов: создал, настроил права доступа и при необходимости заблокировал учётные записи.</li>
+     <li>Спроектировал и выполнил выгрузки данных из реляционных баз, хранилищ и витрин под задачи смежных подразделений, обеспечив выгрузку в требуемых форматах.</li>
+     <li>Обучил и проконсультировал конечных пользователей по работе в программах 1С, объяснил алгоритмы выполнения типовых операций.</li>
+     <li>Предоставил техническую поддержку пользователям (L1/L2), диагностировал и устранил неполадки в работе офисного оборудования и прикладного ПО на местах.</li>
+    </ul></div></div>
+   </article>
+
+   <article class="card rv">
+    <div class="top"><h3>Android-разработчик (Kotlin)</h3><span class="date">2026</span><span class="co">Войсковая часть (заказчик)</span></div>
+    <div class="tags"><span class="tag"><i class="fab fa-android"></i>Kotlin</span><span class="tag"><i class="fas fa-mobile-alt"></i>Android SDK</span><span class="tag"><i class="fas fa-database"></i>Room DB</span></div>
+    <button class="tog"><i class="fas fa-chevron-right"></i><span>Показать подробности</span></button>
+    <div class="det"><div><ul>
+     <li>Разработал нативное Android-приложение на Kotlin для операторов БПЛА, закладывая архитектуру, устойчивую к работе в условиях ограниченных ресурсов устройства (память/процессор).</li>
+     <li>Спроектировал и сверстал интерфейс с динамическим обновлением полётных данных без задержек.</li>
+     <li>Реализовал слой локального хранения, настроил базу данных Room, в которую приложение сохраняло статистику полётов (минимальное, среднее, максимальное время) и результаты заданий.</li>
+     <li>Интегрировал функционал экспорта данных, разработал генерацию отчетов по полётной статистике в форматах PDF и Excel на стороне устройства.</li>
+     <li>Взаимодействовал с заказчиком на всех этапах, уточнил функциональные требования, проводил демонстрации промежуточных сборок и собирал обратную связь для корректировки UI/UX.</li>
+    </ul></div></div>
+   </article>
+
+   <article class="card rv">
+    <div class="top"><h3>Python-разработчик (Telegram-бот)</h3><span class="date">2024</span><span class="co"><a href="https://carych.ru" target="_blank" rel="noopener">carych.ru</a></span></div>
+    <div class="tags"><span class="tag"><i class="fab fa-python"></i>Python</span><span class="tag"><i class="fas fa-robot"></i>Aiogram</span><span class="tag"><i class="fas fa-database"></i>SQL (SQLite)</span><span class="tag"><i class="fas fa-credit-card"></i>API платежных шлюзов</span><span class="tag"><i class="fab fa-git-alt"></i>Git</span></div>
+    <button class="tog"><i class="fas fa-chevron-right"></i><span>Показать подробности</span></button>
+    <div class="det"><div><ul>
+     <li>Разработал Telegram-бота на Python (фреймворк Aiogram): спроектировал архитектуру диалогов, реализовал FSM-машину состояний для многошаговых сценариев взаимодействия с пользователем.</li>
+     <li>Спроектировал и развернул структуру базы данных, написал SQL-запросы и миграции для хранения и обработки пользовательских данных бота.</li>
+     <li>Провел полный цикл тестирования кода, выявил и исправил баги, связанные с асинхронной обработкой запросов и гонкой состояний, добился стабильной работы под нагрузкой.</li>
+     <li>Привел кодовую базу и документацию в соответствие с отраслевыми стандартами и требованиями заказчика, внедрил системы ведения changelog'а для прозрачности процесса разработки.</li>
+     <li>Спроектировал и реализовал интеграцию с внешними сервисами, написал модуль для подключения платежной системы, а также синхронизировал каталог бота с API основного сайта компании, чтобы цены и остатки отображались в актуальном виде.</li>
+     </ul>
+     <div class="vid"><span><i class="fas fa-video"></i> Демонстрация работы бота · 1:14</span><a class="btn" href="https://disk.yandex.ru/i/r_JsQJmc15ErlA" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i>Смотреть на Яндекс Диске</a></div>
+    </div></div>
+   </article>
+  </div>
+ </section>
+
+ <section id="proj">
+  <h2 class="h2 rv"><i class="fas fa-rocket"></i>Ключевые проекты</h2>
+  <div class="pj">
+   <article class="card rv">
+    <h3>📱 Android-приложение для операторов БПЛА <span class="role-b">Заказчик: Войсковая часть</span></h3>
+    <p><b>Задача:</b> разработать нативное Android-приложение для приёма и отображения телеметрии с беспилотных летательных аппаратов в реальном времени с учётом жёстких ограничений по памяти и производительности устройства.</p>
+    <p><b>Результат:</b> создано приложение с динамическим интерфейсом, локальным хранением статистики полётов в Room DB и генерацией отчётов в PDF/Excel. Приложение успешно прошло все этапы приёмочных испытаний заказчика.</p>
+    <div class="res"><span><i class="fas fa-check-circle"></i>5 ключевых модулей реализовано</span><span><i class="fas fa-chart-line"></i>Обработка данных в реальном времени</span><span><i class="fas fa-file-pdf"></i>Экспорт отчётов PDF/Excel</span><span><i class="fas fa-database"></i>Локальное хранение статистики</span></div>
+    <div class="tags"><span class="tag">Kotlin</span><span class="tag">Android SDK</span><span class="tag">Room DB</span><span class="tag">PDF/Excel генерация</span></div>
+   </article>
+
+   <article class="card rv">
+    <h3>🤖 Telegram-бот для carych.ru <span class="role-b">Заказчик: Интернет-магазин автозапчастей</span></h3>
+    <p><b>Задача:</b> спроектировать и реализовать многофункционального Telegram-бота для автоматизации взаимодействия с клиентами, обработки заказов и приёма платежей.</p>
+    <p><b>Результат:</b> бот с FSM-машиной состояний, интеграцией с API платежного шлюза и синхронизацией каталога с основным сайтом компании. Обеспечил автоматизацию заказов и уведомлений, что снизило нагрузку на менеджеров на 30%.</p>
+    <div class="res"><span><i class="fas fa-check-circle"></i>10+ сценариев диалогов</span><span><i class="fas fa-credit-card"></i>Приём платежей через API</span><span><i class="fas fa-sync-alt"></i>Синхронизация с сайтом</span><span><i class="fas fa-users"></i>Обслуживание 200+ пользователей</span></div>
+    <div class="tags"><span class="tag">Python</span><span class="tag">Aiogram</span><span class="tag">SQLite</span><span class="tag">REST API</span><span class="tag">Git</span></div>
+   </article>
+
+   <article class="card rv">
+    <h3>💪 GymDiary — трекер тренировок <span class="role-b">Личный проект · Android</span></h3>
+    <p><b>Задача:</b> разработать Android-приложение для ведения дневника тренировок с возможностью отслеживать упражнения, подходы, вес и прогресс. Обеспечить удобный ввод данных и наглядную статистику.</p>
+    <p><b>Результат:</b> создано полнофункциональное приложение с базой из 500+ упражнений, таймером отдыха, системой рекордов и графиками прогресса. Реализован экспорт/импорт данных для переноса между устройствами.</p>
+    <div class="res"><span><i class="fas fa-dumbbell"></i>500+ упражнений в базе</span><span><i class="fas fa-chart-line"></i>Графики прогресса</span><span><i class="fas fa-trophy"></i>Система рекордов</span><span><i class="fas fa-clock"></i>Таймер отдыха</span><span><i class="fas fa-file-export"></i>Экспорт / импорт</span><span><i class="fas fa-child"></i>Карта мышц</span></div>
+    <div class="tags"><span class="tag">Kotlin</span><span class="tag">Android SDK</span><span class="tag">Room DB</span><span class="tag">MPAndroidChart</span><span class="tag">RepDB API</span></div>
+    <div class="gal" id="gal"></div>
+    <div class="hint"><i class="fas fa-arrows-alt-h"></i> Прокрутите вправо, чтобы увидеть все скриншоты · нажмите, чтобы увеличить</div>
+   </article>
+  </div>
+ </section>
+
+ <section id="rec" style="padding:20px 0 40px">
+  <h2 class="h2 rv" style="margin-bottom:20px"><i class="fas fa-star"></i>Рекомендации</h2>
+  <div class="recs rv">
+   <button class="rec" data-i="0"><img src="1.jpeg" alt="СНТ Вагонник"><span>СНТ «Вагонник»<small><i class="fas fa-building"></i>Открыть письмо</small></span></button>
+   <button class="rec" data-i="1"><img src="2.jpeg" alt="ООО КАРЫЧ"><span>ООО «КАРЫЧ»<small><i class="fas fa-store"></i>Открыть письмо</small></span></button>
+   <button class="rec" data-i="2"><img src="3.jpeg" alt="Войсковая часть"><span>Войсковая часть<small><i class="fas fa-shield-alt"></i>Открыть письмо</small></span></button>
+  </div>
+ </section>
+
+ <section id="skills">
+  <div class="two">
+   <div class="stack">
+    <div class="card rv" id="skl">
+     <h4><i class="fas fa-cog"></i>Hard Skills</h4>
+     <div class="skills"><span class="sk">Python</span><span class="sk">Kotlin</span><span class="sk">C#</span><span class="sk">Android SDK</span><span class="sk">Room DB</span><span class="sk">SQL (PostgreSQL, MySQL)</span><span class="sk">1С:Садовод</span><span class="sk">Git</span><span class="sk">Linux</span><span class="sk">Figma</span></div>
     </div>
-
-    <div class="resume" id="resume">
-
-        <header class="header">
-            <div class="header-left">
-                <div class="photo-wrapper">
-                    <img src="picture.jpg" alt="Кирилл Брызгалов">
-                </div>
-                <div class="name-title">
-                    <div class="full-name">
-                        <div>Брызгалов</div>
-                        <div>Кирилл</div>
-                        <div>Алексеевич</div>
-                    </div>
-                    <div class="age">22 года</div>
-                </div>
-            </div>
-            <div class="contacts">
-                <a href="mailto:kir.bryzgalov@gmail.com" class="contact-item">
-                    <i class="fas fa-envelope"></i> kir.bryzgalov@gmail.com
-                </a>
-                <a href="tel:+79122475956" class="contact-item">
-                    <i class="fas fa-phone-alt"></i> +7 (912) 247-59-56
-                </a>
-                <a href="https://github.com/LILFORTYSEVEN" target="_blank" class="contact-item">
-                    <i class="fab fa-github"></i> github.com/LILFORTYSEVEN
-                </a>
-            </div>
-        </header>
-
-        <div class="grid">
-
-            <div class="main-col">
-
-                <section>
-                    <h2 class="section-title"><i class="fas fa-briefcase" style="margin-right: 10px;"></i> Опыт работы</h2>
-
-                    <!-- 1 -->
-                    <div class="exp-item">
-                        <div class="exp-header">
-                            <h3>Администратор баз данных</h3>
-                            <span class="company">· СНТ «Вагонник»</span>
-                            <span class="date">2023 – 2024</span>
-                        </div>
-                        <div class="exp-stack">
-                            <span class="stack-tag"><i class="fas fa-code"></i> 1С:Садовод</span>
-                            <span class="stack-tag"><i class="fas fa-database"></i> SQL (выгрузки)</span>
-                            <span class="stack-tag"><i class="fas fa-windows"></i> Администрирование Windows</span>
-                        </div>
-                        <button class="exp-toggle" onclick="toggleExp(this)">
-                            <span class="toggle-arrow">▸</span> Показать подробности
-                        </button>
-                        <div class="exp-details">
-                            <ul class="exp-desc">
-                                <li>Обработал и ввел массивы первичных данных в учетную систему и базы данных на платформе «1С:Садовод», проверил их целостность и непротиворечивость.</li>
-                                <li>Администрировал учетные записи пользователей и администраторов: создал, настроил права доступа и при необходимости заблокировал учётные записи.</li>
-                                <li>Спроектировал и выполнил выгрузки данных из реляционных баз, хранилищ и витрин под задачи смежных подразделений, обеспечив выгрузку в требуемых форматах.</li>
-                                <li>Обучил и проконсультировал конечных пользователей по работе в программах 1С, объяснил алгоритмы выполнения типовых операций.</li>
-                                <li>Предоставил техническую поддержку пользователям (L1/L2), диагностировал и устранил неполадки в работе офисного оборудования и прикладного ПО на местах.</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- 2 -->
-                    <div class="exp-item">
-                        <div class="exp-header">
-                            <h3>Android-разработчик (Kotlin)</h3>
-                            <span class="company">· Войсковая часть (заказчик)</span>
-                            <span class="date">2026</span>
-                        </div>
-                        <div class="exp-stack">
-                            <span class="stack-tag"><i class="fab fa-android"></i> Kotlin</span>
-                            <span class="stack-tag"><i class="fas fa-mobile-alt"></i> Android SDK</span>
-                            <span class="stack-tag"><i class="fas fa-database"></i> Room DB</span>
-                        </div>
-                        <button class="exp-toggle" onclick="toggleExp(this)">
-                            <span class="toggle-arrow">▸</span> Показать подробности
-                        </button>
-                        <div class="exp-details">
-                            <ul class="exp-desc">
-                                <li>Разработал нативное Android-приложение на Kotlin для операторов БПЛА, закладывая архитектуру, устойчивую к работе в условиях ограниченных ресурсов устройства (память/процессор).</li>
-                                <li>Спроектировал и сверстал интерфейс с динамическим обновлением полётных данных без задержек.</li>
-                                <li>Реализовал слой локального хранения, настроил базу данных Room, в которую приложение сохраняло статистику полётов (минимальное, среднее, максимальное время) и результаты заданий.</li>
-                                <li>Интегрировал функционал экспорта данных, разработал генерацию отчетов по полётной статистике в форматах PDF и Excel на стороне устройства.</li>
-                                <li>Взаимодействовал с заказчиком на всех этапах, уточнил функциональные требования, проводил демонстрации промежуточных сборок и собирал обратную связь для корректировки UI/UX.</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- 3 -->
-                    <div class="exp-item">
-                        <div class="exp-header">
-                            <h3>Python-разработчик (Telegram-бот)</h3>
-                            <span class="company"><a href="https://carych.ru" target="_blank">carych.ru</a></span>
-                            <span class="date">2024</span>
-                        </div>
-                        <div class="exp-stack">
-                            <span class="stack-tag"><i class="fab fa-python"></i> Python</span>
-                            <span class="stack-tag"><i class="fas fa-robot"></i> Aiogram</span>
-                            <span class="stack-tag"><i class="fas fa-database"></i> SQL (SQLite)</span>
-                            <span class="stack-tag"><i class="fas fa-credit-card"></i> API платежных шлюзов</span>
-                            <span class="stack-tag"><i class="fab fa-git-alt"></i> Git</span>
-                        </div>
-                        <button class="exp-toggle" onclick="toggleExp(this)">
-                            <span class="toggle-arrow">▸</span> Показать подробности
-                        </button>
-                        <div class="exp-details">
-                            <ul class="exp-desc">
-                                <li>Разработал Telegram-бота на Python (фреймворк Aiogram): спроектировал архитектуру диалогов, реализовал FSM-машину состояний для многошаговых сценариев взаимодействия с пользователем.</li>
-                                <li>Спроектировал и развернул структуру базы данных, написал SQL-запросы и миграции для хранения и обработки пользовательских данных бота.</li>
-                                <li>Провел полный цикл тестирования кода, выявил и исправил баги, связанные с асинхронной обработкой запросов и гонкой состояний, добился стабильной работы под нагрузкой.</li>
-                                <li>Привел кодовую базу и документацию в соответствие с отраслевыми стандартами и требованиями заказчика, внедрил системы ведения changelog'а для прозрачности процесса разработки.</li>
-                                <li>Спроектировал и реализовал интеграцию с внешними сервисами, написал модуль для подключения платежной системы, а также синхронизировал каталог бота с API основного сайта компании, чтобы цены и остатки отображались в актуальном виде.</li>
-                            </ul>
-                            <div class="video-wrapper">
-                                <div class="video-label">
-                                    <i class="fas fa-video"></i> Демонстрация работы бота
-                                </div>
-                                <div style="background: #0e0e10; border-radius: 10px; padding: 20px; text-align: center;">
-                                    <a href="https://disk.yandex.ru/i/r_JsQJmc15ErlA" 
-                                       target="_blank" 
-                                       class="video-download-btn">
-                                       <i class="fas fa-external-link-alt"></i> Смотреть на Яндекс Диске
-                                    </a>
-                                    <p style="color: #8a8a94; font-size: 13px; margin-top: 10px;">
-                                        Видео откроется в новой вкладке · 1:14
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <section>
-                    <h2 class="section-title"><i class="fas fa-rocket" style="margin-right: 10px;"></i> Ключевые проекты</h2>
-
-                    <!-- Проект 1 -->
-                    <div class="project-item">
-                        <h4>
-                            <span>📱 Android-приложение для операторов БПЛА</span>
-                            <span class="project-role">Заказчик: Войсковая часть</span>
-                        </h4>
-                        <div class="project-desc">
-                            <strong>Задача:</strong> разработать нативное Android-приложение для приёма и отображения телеметрии с беспилотных летательных аппаратов в реальном времени с учётом жёстких ограничений по памяти и производительности устройства.
-                        </div>
-                        <div class="project-desc" style="margin-top: 6px;">
-                            <strong>Результат:</strong> создано приложение с динамическим интерфейсом, локальным хранением статистики полётов в Room DB и генерацией отчётов в PDF/Excel. Приложение успешно прошло все этапы приёмочных испытаний заказчика.
-                        </div>
-                        <div class="project-results">
-                            <span><i class="fas fa-check-circle"></i> 5 ключевых модулей реализовано</span>
-                            <span><i class="fas fa-chart-line"></i> Обработка данных в реальном времени</span>
-                            <span><i class="fas fa-file-pdf"></i> Экспорт отчётов PDF/Excel</span>
-                            <span><i class="fas fa-database"></i> Локальное хранение статистики</span>
-                        </div>
-                        <div>
-                            <span class="tech-tag">Kotlin</span>
-                            <span class="tech-tag">Android SDK</span>
-                            <span class="tech-tag">Room DB</span>
-                            <span class="tech-tag">PDF/Excel генерация</span>
-                        </div>
-                    </div>
-
-                    <!-- Проект 2 -->
-                    <div class="project-item">
-                        <h4>
-                            <span>🤖 Telegram-бот для carych.ru</span>
-                            <span class="project-role">Заказчик: Интернет-магазин автозапчастей</span>
-                        </h4>
-                        <div class="project-desc">
-                            <strong>Задача:</strong> спроектировать и реализовать многофункционального Telegram-бота для автоматизации взаимодействия с клиентами, обработки заказов и приёма платежей.
-                        </div>
-                        <div class="project-desc" style="margin-top: 6px;">
-                            <strong>Результат:</strong> бот с FSM-машиной состояний, интеграцией с API платежного шлюза и синхронизацией каталога с основным сайтом компании. Обеспечил автоматизацию заказов и уведомлений, что снизило нагрузку на менеджеров на 30%.
-                        </div>
-                        <div class="project-results">
-                            <span><i class="fas fa-check-circle"></i> 10+ сценариев диалогов</span>
-                            <span><i class="fas fa-credit-card"></i> Приём платежей через API</span>
-                            <span><i class="fas fa-sync-alt"></i> Синхронизация с сайтом</span>
-                            <span><i class="fas fa-users"></i> Обслуживание 200+ пользователей</span>
-                        </div>
-                        <div>
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">Aiogram</span>
-                            <span class="tech-tag">SQLite</span>
-                            <span class="tech-tag">REST API</span>
-                            <span class="tech-tag">Git</span>
-                        </div>
-                    </div>
-
-                    <!-- Проект 3: GymDiary -->
-                    <div class="project-item">
-                        <h4>
-                            <span>💪 GymDiary — трекер тренировок</span>
-                            <span class="project-role">Личный проект · Android</span>
-                        </h4>
-                        <div class="project-desc">
-                            <strong>Задача:</strong> разработать Android-приложение для ведения дневника тренировок с возможностью отслеживать упражнения, подходы, вес и прогресс. Обеспечить удобный ввод данных и наглядную статистику.
-                        </div>
-                        <div class="project-desc" style="margin-top: 6px;">
-                            <strong>Результат:</strong> создано полнофункциональное приложение с базой из 500+ упражнений, таймером отдыха, системой рекордов и графиками прогресса. Реализован экспорт/импорт данных для переноса между устройствами.
-                        </div>
-                        <div class="project-results">
-                            <span><i class="fas fa-dumbbell"></i> 500+ упражнений в базе</span>
-                            <span><i class="fas fa-chart-line"></i> Графики прогресса</span>
-                            <span><i class="fas fa-trophy"></i> Система рекордов</span>
-                            <span><i class="fas fa-clock"></i> Таймер отдыха</span>
-                            <span><i class="fas fa-file-export"></i> Экспорт / импорт</span>
-                            <span><i class="fas fa-child"></i> Карта мышц</span>
-                        </div>
-                        <div>
-                            <span class="tech-tag">Kotlin</span>
-                            <span class="tech-tag">Android SDK</span>
-                            <span class="tech-tag">Room DB</span>
-                            <span class="tech-tag">MPAndroidChart</span>
-                            <span class="tech-tag">RepDB API</span>
-                        </div>
-
-                        <!-- Галерея -->
-                        <div class="project-gallery">
-                            <div class="gallery-item" onclick="openModal('gym1.jpg', 'GymDiary — Экран приветствия', galleryGym, 0)">
-                                <img src="gym1.jpg" alt="GymDiary 1">
-                                <span class="gallery-index">1 / 10</span>
-                            </div>
-                            <div class="gallery-item" onclick="openModal('gym2.jpg', 'GymDiary — Выбор упражнения', galleryGym, 1)">
-                                <img src="gym2.jpg" alt="GymDiary 2">
-                                <span class="gallery-index">2 / 10</span>
-                            </div>
-                            <div class="gallery-item" onclick="openModal('gym3.jpg', 'GymDiary — Список упражнений', galleryGym, 2)">
-                                <img src="gym3.jpg" alt="GymDiary 3">
-                                <span class="gallery-index">3 / 10</span>
-                            </div>
-                            <div class="gallery-item" onclick="openModal('gym4.jpg', 'GymDiary — Статистика веса', galleryGym, 3)">
-                                <img src="gym4.jpg" alt="GymDiary 4">
-                                <span class="gallery-index">4 / 10</span>
-                            </div>
-                            <div class="gallery-item" onclick="openModal('gym5.jpg', 'GymDiary — Мои рекорды', galleryGym, 4)">
-                                <img src="gym5.jpg" alt="GymDiary 5">
-                                <span class="gallery-index">5 / 10</span>
-                            </div>
-                            <div class="gallery-item" onclick="openModal('gym6.jpg', 'GymDiary — Строение мышц', galleryGym, 5)">
-                                <img src="gym6.jpg" alt="GymDiary 6">
-                                <span class="gallery-index">6 / 10</span>
-                            </div>
-                            <div class="gallery-item" onclick="openModal('gym7.jpg', 'GymDiary — Экспорт данных', galleryGym, 6)">
-                                <img src="gym7.jpg" alt="GymDiary 7">
-                                <span class="gallery-index">7 / 10</span>
-                            </div>
-                            <div class="gallery-item" onclick="openModal('gym8.jpg', 'GymDiary — Тренировка', galleryGym, 7)">
-                                <img src="gym8.jpg" alt="GymDiary 8">
-                                <span class="gallery-index">8 / 10</span>
-                            </div>
-                            <div class="gallery-item" onclick="openModal('gym9.jpg', 'GymDiary — Новый рекорд', galleryGym, 8)">
-                                <img src="gym9.jpg" alt="GymDiary 9">
-                                <span class="gallery-index">9 / 10</span>
-                            </div>
-                            <div class="gallery-item" onclick="openModal('gym10.jpg', 'GymDiary — О разработчике', galleryGym, 9)">
-                                <img src="gym10.jpg" alt="GymDiary 10">
-                                <span class="gallery-index">10 / 10</span>
-                            </div>
-                        </div>
-                        <div class="project-gallery-hint">
-                            <i class="fas fa-arrows-alt-h"></i> Прокрутите вправо, чтобы увидеть все скриншоты · кликните, чтобы увеличить
-                        </div>
-                    </div>
-                </section>
-
-                <section>
-                    <h2 class="section-title"><i class="fas fa-star" style="margin-right: 10px;"></i> Рекомендации</h2>
-                    <div class="recommendations-grid">
-                        <div class="recommendation-item" onclick="openModal('1.jpeg', 'СНТ «Вагонник»')">
-                            <img src="1.jpeg" alt="СНТ Вагонник">
-                            <div class="rec-label"><i class="fas fa-building"></i> СНТ «Вагонник»</div>
-                        </div>
-                        <div class="recommendation-item" onclick="openModal('2.jpeg', 'ООО «КАРЫЧ»')">
-                            <img src="2.jpeg" alt="ООО КАРЫЧ">
-                            <div class="rec-label"><i class="fas fa-store"></i> ООО «КАРЫЧ»</div>
-                        </div>
-                        <div class="recommendation-item" onclick="openModal('3.jpeg', 'Войсковая часть')">
-                            <img src="3.jpeg" alt="Войсковая часть">
-                            <div class="rec-label"><i class="fas fa-shield-alt"></i> Войсковая часть</div>
-                        </div>
-                    </div>
-                </section>
-            </div>
-
-            <div class="side-col">
-
-                <section>
-                    <h2 class="section-title"><i class="fas fa-cog" style="margin-right: 10px;"></i> Hard Skills</h2>
-                    <div class="skill-list">
-                        <span class="skill-item">Python</span>
-                        <span class="skill-item">Kotlin</span>
-                        <span class="skill-item">C#</span>
-                        <span class="skill-item">Android SDK</span>
-                        <span class="skill-item">Room DB</span>
-                        <span class="skill-item">SQL (PostgreSQL, MySQL)</span>
-                        <span class="skill-item">1С:Садовод</span>
-                        <span class="skill-item">Git</span>
-                        <span class="skill-item">Linux</span>
-                        <span class="skill-item">Figma</span>
-                    </div>
-                </section>
-
-                <section>
-                    <h2 class="section-title"><i class="fas fa-language" style="margin-right: 10px;"></i> Языки</h2>
-                    <div class="lang-item"><span>Русский</span> <span style="color:#b0b0b8;">Родной</span></div>
-                    <div class="lang-item"><span>Английский</span> <span style="color:#b0b0b8;">Базовый</span></div>
-                </section>
-
-                <section>
-                    <h2 class="section-title"><i class="fas fa-graduation-cap" style="margin-right: 10px;"></i> Образование</h2>
-
-                    <div class="edu-item">
-                        <span class="edu-level">Высшее — бакалавриат</span>
-                        <div class="edu-title">ИНФОРМАТИКА И ВЫЧИСЛИТЕЛЬНАЯ ТЕХНИКА</div>
-                        <div class="edu-sub">
-                            Уральский технический институт связи и информатики (филиал)<br>
-                            СибГУТИ, г. Екатеринбург
-                        </div>
-                        <div class="edu-meta">
-                            <span><i class="fas fa-calendar-alt"></i> 2024 – н.в.</span>
-                            <span><i class="fas fa-user-graduate"></i> Бакалавр</span>
-                        </div>
-                    </div>
-
-                    <div class="edu-item">
-                        <span class="edu-level">Среднее профессиональное</span>
-                        <div class="edu-title">ПРОГРАММИРОВАНИЕ В КОМПЬЮТЕРНЫХ СИСТЕМАХ</div>
-                        <div class="edu-sub">
-                            Уральский технический институт связи и информатики (филиал)<br>
-                            СибГУТИ, г. Екатеринбург
-                        </div>
-                        <div class="edu-meta">
-                            <span><i class="fas fa-calendar-alt"></i> 2020 – 2024</span>
-                            <span><i class="fas fa-user-graduate"></i> Техник-программист</span>
-                        </div>
-                    </div>
-                </section>
-
-                <section>
-                    <h2 class="section-title"><i class="fas fa-id-card" style="margin-right: 10px;"></i> Дополнительно</h2>
-                    <div class="extra-item">
-                        <i class="fas fa-car"></i> Водительское удостоверение (кат. B)
-                    </div>
-                    <div class="extra-item">
-                        <i class="fas fa-id-card"></i> Военный билет
-                    </div>
-                </section>
-
-            </div>
-        </div>
-
-        <div class="stats">
-            <div class="stat-item">
-                <span class="stat-number" id="projectsCount">3</span>
-                <span class="stat-label">Проекта</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-number" id="skillsCount">10</span>
-                <span class="stat-label">Технологий</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-number" id="experienceCount">3</span>
-                <span class="stat-label">Места работы</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-number" id="educationCount">2</span>
-                <span class="stat-label">Образования</span>
-            </div>
-        </div>
-
-        <div class="footnote">
-            <i class="fas fa-arrow-right"></i> Готов к работе · Открыт для предложений
-        </div>
+    <div class="card rv">
+     <h4><i class="fas fa-language"></i>Языки</h4>
+     <div class="row"><span>Русский</span><em>Родной</em></div>
+     <div class="row"><span>Английский</span><em>Базовый</em></div>
     </div>
-
-    <!-- Модальное окно -->
-    <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
-        <div class="modal-content" onclick="event.stopPropagation()">
-            <button class="modal-close" onclick="closeModal()">&times;</button>
-            <button class="modal-nav modal-prev" id="modalPrev" onclick="navigateGallery(-1)">
-                <i class="fas fa-chevron-left"></i>
-            </button>
-            <button class="modal-nav modal-next" id="modalNext" onclick="navigateGallery(1)">
-                <i class="fas fa-chevron-right"></i>
-            </button>
-            <img id="modalImage" src="" alt="Просмотр">
-            <div class="modal-label" id="modalLabel"><i class="fas fa-file-image"></i> </div>
-        </div>
+    <div class="card rv">
+     <h4><i class="fas fa-id-card"></i>Дополнительно</h4>
+     <div class="ex"><i class="fas fa-car"></i>Водительское удостоверение (кат. B)</div>
+     <div class="ex"><i class="fas fa-id-card"></i>Военный билет</div>
     </div>
+   </div>
+   <div class="card rv" id="edu" style="align-self:start">
+    <h4><i class="fas fa-graduation-cap"></i>Образование</h4>
+    <div class="edu">
+     <span class="lvl">Высшее — бакалавриат</span>
+     <b>ИНФОРМАТИКА И ВЫЧИСЛИТЕЛЬНАЯ ТЕХНИКА</b>
+     <p>Уральский технический институт связи и информатики (филиал) СибГУТИ, г. Екатеринбург</p>
+     <div class="meta"><span><i class="fas fa-calendar-alt"></i>2024 – н.в.</span><span><i class="fas fa-user-graduate"></i>Бакалавр</span></div>
+    </div>
+    <div class="edu">
+     <span class="lvl">Среднее профессиональное</span>
+     <b>ПРОГРАММИРОВАНИЕ В КОМПЬЮТЕРНЫХ СИСТЕМАХ</b>
+     <p>Уральский технический институт связи и информатики (филиал) СибГУТИ, г. Екатеринбург</p>
+     <div class="meta"><span><i class="fas fa-calendar-alt"></i>2020 – 2024</span><span><i class="fas fa-user-graduate"></i>Техник-программист</span></div>
+    </div>
+   </div>
+  </div>
+ </section>
+</main>
 
-    <script>
-        const galleryGym = [
-            { src: 'gym1.jpg',  label: 'GymDiary — Экран приветствия' },
-            { src: 'gym2.jpg',  label: 'GymDiary — Выбор упражнения' },
-            { src: 'gym3.jpg',  label: 'GymDiary — Список упражнений' },
-            { src: 'gym4.jpg',  label: 'GymDiary — Статистика веса' },
-            { src: 'gym5.jpg',  label: 'GymDiary — Мои рекорды' },
-            { src: 'gym6.jpg',  label: 'GymDiary — Строение мышц' },
-            { src: 'gym7.jpg',  label: 'GymDiary — Экспорт данных' },
-            { src: 'gym8.jpg',  label: 'GymDiary — Тренировка' },
-            { src: 'gym9.jpg',  label: 'GymDiary — Новый рекорд' },
-            { src: 'gym10.jpg', label: 'GymDiary — О разработчике' }
-        ];
+<footer><b>Готов к работе · Открыт для предложений</b></footer>
 
-        let currentGallery = [];
-        let currentIndex = 0;
+<div class="modal" id="modal" role="dialog" aria-modal="true">
+ <button class="mb mx" id="mx" aria-label="Закрыть">&times;</button>
+ <button class="mb mp" id="mp" aria-label="Назад"><i class="fas fa-chevron-left"></i></button>
+ <button class="mb mn" id="mn" aria-label="Вперёд"><i class="fas fa-chevron-right"></i></button>
+ <figure><img id="mi" alt=""><figcaption id="mc"></figcaption></figure>
+</div>
 
-        function toggleExp(button) {
-            const details = button.nextElementSibling;
-            const isOpen = details.classList.contains('open');
-            
-            if (isOpen) {
-                details.classList.remove('open');
-                button.classList.remove('open');
-                button.innerHTML = '<span class="toggle-arrow">▸</span> Показать подробности';
-            } else {
-                details.classList.add('open');
-                button.classList.add('open');
-                button.innerHTML = '<span class="toggle-arrow">▾</span> Скрыть подробности';
-            }
-        }
-
-        function openModal(imageSrc, labelText, gallery = null, index = 0) {
-            const overlay = document.getElementById('modalOverlay');
-            const img = document.getElementById('modalImage');
-            const label = document.getElementById('modalLabel');
-            
-            if (gallery && gallery.length > 0) {
-                currentGallery = gallery;
-                currentIndex = index;
-            } else {
-                currentGallery = [];
-                currentIndex = 0;
-            }
-            
-            img.src = imageSrc;
-            label.innerHTML = '<i class="fas fa-file-image"></i> ' + labelText;
-            overlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
-            
-            updateNavButtons();
-        }
-
-        function navigateGallery(direction) {
-            if (currentGallery.length === 0) return;
-            currentIndex = (currentIndex + direction + currentGallery.length) % currentGallery.length;
-            const item = currentGallery[currentIndex];
-            
-            document.getElementById('modalImage').src = item.src;
-            document.getElementById('modalLabel').innerHTML = '<i class="fas fa-file-image"></i> ' + item.label;
-        }
-
-        function updateNavButtons() {
-            const navPrev = document.getElementById('modalPrev');
-            const navNext = document.getElementById('modalNext');
-            
-            if (currentGallery.length > 1) {
-                navPrev.style.display = 'flex';
-                navNext.style.display = 'flex';
-            } else {
-                navPrev.style.display = 'none';
-                navNext.style.display = 'none';
-            }
-        }
-
-        function closeModal(event) {
-            if (event && event.target !== event.currentTarget && !event.target.closest('.modal-close')) {
-                return;
-            }
-            document.getElementById('modalOverlay').classList.remove('active');
-            document.body.style.overflow = '';
-            currentGallery = [];
-            currentIndex = 0;
-        }
-
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') closeModal();
-            else if (e.key === 'ArrowLeft') navigateGallery(-1);
-            else if (e.key === 'ArrowRight') navigateGallery(1);
-        });
-
-        document.addEventListener('DOMContentLoaded', function() {
-            const numbers = document.querySelectorAll('.stat-number');
-            numbers.forEach((el, index) => {
-                const target = parseInt(el.textContent);
-                let current = 0;
-                const step = Math.ceil(target / 20);
-                const interval = setInterval(() => {
-                    current += step;
-                    if (current >= target) {
-                        current = target;
-                        clearInterval(interval);
-                    }
-                    el.textContent = current;
-                }, 50 + index * 30);
-            });
-        });
-    </script>
+<script>
+const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
+/* галереи */
+const gym=['Экран приветствия','Выбор упражнения','Список упражнений','Статистика веса','Мои рекорды','Строение мышц','Экспорт данных','Тренировка','Новый рекорд','О разработчике'].map((t,i)=>({src:`gym${i+1}.jpg`,label:'GymDiary — '+t}));
+const recs=[{src:'1.jpeg',label:'СНТ «Вагонник»'},{src:'2.jpeg',label:'ООО «КАРЫЧ»'},{src:'3.jpeg',label:'Войсковая часть'}];
+$('#gal').innerHTML=gym.map((g,i)=>`<button data-i="${i}" aria-label="${g.label}"><img src="${g.src}" alt="${g.label}" loading="lazy"></button>`).join('');
+/* lightbox */
+let list=[],cur=0;const M=$('#modal');
+function show(){const it=list[cur];$('#mi').src=it.src;$('#mi').alt=it.label;$('#mc').textContent=it.label+(list.length>1?`  ·  ${cur+1} / ${list.length}`:'');$('#mp').style.display=$('#mn').style.display=list.length>1?'':'none'}
+function open(l,i){list=l;cur=i;show();M.classList.add('on');document.body.style.overflow='hidden'}
+function close(){M.classList.remove('on');document.body.style.overflow=''}
+function go(d){if(list.length>1){cur=(cur+d+list.length)%list.length;show()}}
+$('#gal').addEventListener('click',e=>{const b=e.target.closest('button');if(b)open(gym,+b.dataset.i)});
+$$('.rec').forEach(b=>b.onclick=()=>open(recs,+b.dataset.i));
+$('#mx').onclick=close;$('#mp').onclick=()=>go(-1);$('#mn').onclick=()=>go(1);
+M.addEventListener('click',e=>{if(e.target===M)close()});
+addEventListener('keydown',e=>{if(!M.classList.contains('on'))return;if(e.key==='Escape')close();if(e.key==='ArrowLeft')go(-1);if(e.key==='ArrowRight')go(1)});
+/* подробности */
+$$('.tog').forEach(b=>b.onclick=()=>{const d=b.nextElementSibling,o=d.classList.toggle('open');b.classList.toggle('open',o);$('span',b).textContent=o?'Скрыть подробности':'Показать подробности'});
+/* появление и счётчики */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;e.target.classList.add('show');io.unobserve(e.target);
+ $$('[data-n]',e.target).forEach(el=>{const n=+el.dataset.n;let c=0;const t=setInterval(()=>{c++;el.textContent=c;if(c>=n)clearInterval(t)},220)})}),{threshold:.15});
+$$('.rv').forEach(el=>io.observe(el));
+/* свечение и подсветка карточек */
+addEventListener('pointermove',e=>{const g=$('#glow').style;g.setProperty('--x',e.clientX+'px');g.setProperty('--y',e.clientY+'px')});
+$$('.card').forEach(c=>c.addEventListener('pointermove',e=>{const r=c.getBoundingClientRect();c.style.setProperty('--mx',e.clientX-r.left+'px');c.style.setProperty('--my',e.clientY-r.top+'px')}));
+/* прогресс и навигация */
+const sec=$$('main section');
+addEventListener('scroll',()=>{const h=document.documentElement;$('#bar').style.width=h.scrollTop/(h.scrollHeight-h.clientHeight)*100+'%';
+ let id='top';sec.forEach(s=>{if(s.getBoundingClientRect().top<140)id=s.id});
+ $$('#links a').forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+id))},{passive:true});
+/* печатающийся заголовок */
+const words=['Kotlin','Python','C#'];let w=0,ch=0,del=false;const T=$('#typed');
+(function tick(){const s=words[w];ch+=del?-1:1;T.textContent=s.slice(0,ch);let d=del?45:90;
+ if(!del&&ch===s.length){del=true;d=1400}else if(del&&ch===0){del=false;w=(w+1)%words.length;d=350}setTimeout(tick,d)})();
+/* тема */
+const R=document.documentElement,ic=$('#theme i');
+function setTheme(t){R.dataset.theme=t;ic.className='fas fa-'+(t==='light'?'sun':'moon');try{localStorage.setItem('theme',t)}catch(e){}}
+let saved;try{saved=localStorage.getItem('theme')}catch(e){}
+setTheme(saved||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'));
+$('#theme').onclick=()=>setTheme(R.dataset.theme==='light'?'dark':'light');
+</script>
 </body>
 </html>
