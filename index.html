@@ -366,7 +366,7 @@ const recs=[{src:'1.jpeg',label:'СНТ «Вагонник»'},{src:'2.jpeg',lab
 $('#gal').innerHTML=gym.map((g,i)=>`<button data-i="${i}" aria-label="${g.label}"><img src="${g.src}" alt="${g.label}" loading="lazy"></button>`).join('');
 /* lightbox */
 let list=[],cur=0;const M=$('#modal');
-function show(){const it=list[cur];$('#mi').src=it.src;$('#mi').alt=it.label;$('#mc').textContent=it.label+(list.length>1?`  ·  ${cur+1} / ${list.length}`:'');$('#mp').style.display=$('#mn').style.display=list.length>1?'':'none'}
+function show(){const it=list[cur];$('#mi').src=it.src;$('#mi').alt='';$('#mc').textContent=list.length>1?`${cur+1} / ${list.length}`:'';$('#mp').style.display=$('#mn').style.display=list.length>1?'':'none'}
 function open(l,i){list=l;cur=i;show();M.classList.add('on');document.body.style.overflow='hidden'}
 function close(){M.classList.remove('on');document.body.style.overflow=''}
 function go(d){if(list.length>1){cur=(cur+d+list.length)%list.length;show()}}
