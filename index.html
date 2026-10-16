@@ -113,6 +113,16 @@ section{padding:60px 0}
 .gal button:hover{transform:translateY(-6px) scale(1.03);border-color:var(--a)}
 .gal img{width:100%;height:100%;object-fit:cover;display:block}
 .hint{font-size:12.5px;color:var(--dim)}
+/* RuStore */
+.store-row{margin-top:18px;display:flex;justify-content:flex-start}
+.store-btn{display:inline-flex;align-items:center;gap:14px;padding:12px 26px 12px 22px;border-radius:16px;background:linear-gradient(135deg,#0077FF 0%,#00AAFF 100%);color:#fff;font-family:Onest,sans-serif;text-decoration:none;transition:all .3s ease;box-shadow:0 8px 24px -8px rgba(0,119,255,.5);border:1px solid rgba(255,255,255,.1)}
+.store-btn:hover{transform:translateY(-3px);box-shadow:0 14px 32px -8px rgba(0,119,255,.7);filter:brightness(1.1)}
+.store-btn i{font-size:26px;color:#fff}
+.store-btn span{display:flex;flex-direction:column;line-height:1.15;text-align:left}
+.store-btn small{font-size:11px;opacity:.85;letter-spacing:.3px;text-transform:uppercase}
+.store-btn b{font-size:17px;font-weight:600;letter-spacing:-.2px}
+:root[data-theme=light] .store-btn{box-shadow:0 8px 24px -8px rgba(0,119,255,.4)}
+:root[data-theme=light] .store-btn:hover{box-shadow:0 14px 32px -8px rgba(0,119,255,.55)}
 /* recs */
 .recs{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
 .rec{display:flex;align-items:center;gap:12px;padding:8px 14px 8px 8px;cursor:zoom-in;border:1px solid var(--line);background:var(--panel);border-radius:16px;color:inherit;font:inherit;text-align:left;transition:.3s;min-width:0}
@@ -161,7 +171,7 @@ footer b::before{content:"";width:10px;height:10px;border-radius:50%;background:
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.rv{opacity:1;transform:none}.hero h1 span i{transform:none}}
 @media print{
  :root{--bg:#fff;--panel:#fff;--line:#ddd;--text:#000;--dim:#333}
- .glow,.blob,nav,.gal,.hint,.recs,.stats,.tog,.bar,.modal,.vid,footer{display:none!important}
+ .glow,.blob,nav,.gal,.hint,.recs,.stats,.tog,.bar,.modal,.vid,.store-row,footer{display:none!important}
  .rv{opacity:1!important;transform:none!important}.det{grid-template-rows:1fr!important}
  section{padding:20px 0}.card{break-inside:avoid;border-radius:8px}.hero h1 span i{transform:none;animation:none;color:#000!important;-webkit-text-fill-color:#000}
  .photo{width:120px;height:120px;animation:none;opacity:1}
@@ -272,9 +282,21 @@ footer b::before{content:"";width:10px;height:10px;border-radius:50%;background:
    <article class="card rv">
     <h3>💪 GymDiary — трекер тренировок <span class="role-b">Личный проект · Android</span></h3>
     <p><b>Задача:</b> разработать Android-приложение для ведения дневника тренировок с возможностью отслеживать упражнения, подходы, вес и прогресс. Обеспечить удобный ввод данных и наглядную статистику.</p>
-    <p><b>Результат:</b> создано полнофункциональное приложение с базой из 500+ упражнений, таймером отдыха, системой рекордов и графиками прогресса. Реализован экспорт/импорт данных для переноса между устройствами. Интегрирован ИИ Фитнес-тренер на базе модели GigaChat.</p>
+    <p><b>Результат:</b> создано полнофункциональное приложение с базой из 500+ упражнений, таймером отдыха, системой рекордов и графиками прогресса. Реализован экспорт/импорт данных для переноса между устройствами.</p>
     <div class="res"><span><i class="fas fa-dumbbell"></i>500+ упражнений в базе</span><span><i class="fas fa-chart-line"></i>Графики прогресса</span><span><i class="fas fa-trophy"></i>Система рекордов</span><span><i class="fas fa-clock"></i>Таймер отдыха</span><span><i class="fas fa-file-export"></i>Экспорт / импорт</span><span><i class="fas fa-child"></i>Карта мышц</span></div>
     <div class="tags"><span class="tag">Kotlin</span><span class="tag">Android SDK</span><span class="tag">Room DB</span><span class="tag">MPAndroidChart</span><span class="tag">RepDB API</span></div>
+
+    <!-- ===== КНОПКА RUSTORE ===== -->
+    <div class="store-row">
+     <a class="store-btn" href="https://www.rustore.ru/catalog/app/com.lilfortyseven.gymdiary" target="_blank" rel="noopener">
+      <i class="fas fa-download"></i>
+      <span>
+       <small>Доступно в</small>
+       <b>RuStore</b>
+      </span>
+     </a>
+    </div>
+
     <div class="gal" id="gal"></div>
     <div class="hint"><i class="fas fa-arrows-alt-h"></i> Прокрутите вправо, чтобы увидеть все скриншоты · нажмите, чтобы увеличить</div>
    </article>
